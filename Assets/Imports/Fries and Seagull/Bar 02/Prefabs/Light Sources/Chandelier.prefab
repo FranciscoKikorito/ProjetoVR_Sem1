@@ -40,9 +40,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466581060547727423}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.8207547, g: 0.36133853, b: 0.36133853, a: 1}
   m_Intensity: 2.46
   m_Range: 17.5
@@ -92,8 +91,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &5557689100709379752
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,9 +137,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5557689100709379752}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.8207547, g: 0.36133853, b: 0.36133853, a: 1}
   m_Intensity: 2.46
   m_Range: 17.5
@@ -186,8 +188,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &8025455708894888768
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,9 +234,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8025455708894888768}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.8207547, g: 0.36133853, b: 0.36133853, a: 1}
   m_Intensity: 2.46
   m_Range: 17.5
@@ -280,8 +285,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &8770983193252228174
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,9 +331,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8770983193252228174}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.8207547, g: 0.36133853, b: 0.36133853, a: 1}
   m_Intensity: 2.46
   m_Range: 17.5
@@ -374,8 +382,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1001 &2044400421394619848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -450,9 +462,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec866539c2ad67045ab5fbb712c69d1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4690912655971147566}
-    - targetCorrespondingSourceObject: {fileID: -6064424547014209977, guid: ec866539c2ad67045ab5fbb712c69d1a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2450188402286884552}
   m_SourcePrefab: {fileID: 100100000, guid: ec866539c2ad67045ab5fbb712c69d1a, type: 3}
 --- !u!1 &1197467703278805145 stripped
 GameObject:
@@ -495,7 +504,7 @@ MonoBehaviour:
   isOn: 0
   lights:
   - key: _
-    value: {fileID: 2450188402286884552}
+    value: {fileID: 0}
   onTurnOn:
     m_PersistentCalls:
       m_Calls: []
@@ -507,28 +516,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec866539c2ad67045ab5fbb712c69d1a, type: 3}
   m_PrefabInstance: {fileID: 2044400421394619848}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4002008301178819471 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6064424547014209977, guid: ec866539c2ad67045ab5fbb712c69d1a, type: 3}
-  m_PrefabInstance: {fileID: 2044400421394619848}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2450188402286884552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4002008301178819471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7811b77c5eea46338780e837a3dc5aab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightSources:
-  - {fileID: 3800248469087214964}
-  - {fileID: 2700901629278759715}
-  - {fileID: 1657879155490477607}
-  - {fileID: 2789922971000692207}
-  activeLightSourceSurfaceColor: {r: 1, g: 1, b: 0.41176474, a: 1}
-  inactiveLightSourceSurfaceColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0}
-  lightEmissionColor: {r: 4, g: 4, b: 0.5650533, a: 0}
