@@ -1,33 +1,51 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyFollow : MonoBehaviour
 {
-    public Transform player; // Drag your Player GameObject here in the Inspector
-    public float moveSpeed = 0.1f; // Speed of the enemy
+    public Transform player;
+    public float moveSpeed = 2f;
+    public float rotationSpeed = 10f;
+
+    private Rigidbody rb;
 
     void Start()
     {
-        // If player isn't set in Inspector, try finding it by tag
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            GameObject rig = GameObject.Find("[BuildingBlock] Camera Rig");
+            if (rig != null)
+                player = rig.transform;
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        // 1. Calculate Direction
+        if (player == null) return;
+
+        // ----- MOVEMENT -----
         Vector3 direction = player.position - transform.position;
-        // Optional: Normalize if you want consistent speed regardless of distance
-        // direction.Normalize();
+        direction.y = 0f; // ignore vertical difference
+        float distanceSqr = direction.sqrMagnitude;
 
-        // 2. Move Towards Player (Option 1: Using Vector3.MoveTowards)
-        // This is great for fixed-speed movement towards a point.
-        transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        if (distanceSqr > 0.01f)
+        {
+            direction.Normalize();
 
-        // OR (Option 2: Using transform.Translate for more custom control)
-        // transform.Translate(direction.normalized * moveSpeed * Time.deltaTime, Space.World);
-        // Use .normalized if you didn't normalize earlier for consistent speed.
-        // Space.World ensures movement in world directions, not local (like the enemy's forward).
+            Vector3 targetVelocity = direction * moveSpeed;
+            rb.linearVelocity = new Vector3(targetVelocity.x, rb.linearVelocity.y, targetVelocity.z);
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            rb.MoveRotation(
+                Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime)
+            );
+        }
+        else
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+        }
     }
 }

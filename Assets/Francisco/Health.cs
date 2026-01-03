@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 100;
     private int currentHealth;
+    private Spawner spawner;
+    private float maxHealth;
 
-    void Start()
+    // Called by spawner when spawning
+    public void InitializeEnemy(float healthValue, Spawner spawnerRef)
     {
-        currentHealth = maxHealth;
+        maxHealth = healthValue;
+        currentHealth = Mathf.RoundToInt(maxHealth);
+        spawner = spawnerRef;
+        Debug.Log($"{gameObject.name} initialized with {currentHealth} health");
     }
 
     public void TakeDamage(int amount)
@@ -24,6 +29,11 @@ public class Health : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{gameObject.name} died!");
-        Destroy(gameObject); // Or play death animation
+        // Notify the spawner that an enemy died
+        if (spawner != null)
+        {
+            spawner.NotifyDeath();
+        }
+        Destroy(gameObject);
     }
 }
