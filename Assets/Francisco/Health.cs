@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour , IDamageable
 {
     private int currentHealth;
     private Spawner spawner;
@@ -15,10 +15,10 @@ public class Health : MonoBehaviour
         Debug.Log($"{gameObject.name} initialized with {currentHealth} health");
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= amount;
-        Debug.Log($"{gameObject.name} took {amount} damage. Remaining: {currentHealth}");
+        currentHealth -= damage;
+        Debug.Log($"{gameObject.name} took {damage} damage. Remaining: {currentHealth}");
 
         if (currentHealth <= 0)
         {
