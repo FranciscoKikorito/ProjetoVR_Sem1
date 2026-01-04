@@ -5,6 +5,11 @@ public class HandPunch : MonoBehaviour
     public int damage = 50;
     public LayerMask enemyLayer;
 
+    int calculateDamage()
+    {
+        return damage;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (((1 << collision.gameObject.layer) & enemyLayer) == 0)
@@ -12,10 +17,9 @@ public class HandPunch : MonoBehaviour
 
         Debug.Log("Apply damage via collision");
 
-        Health health = collision.gameObject.GetComponent<Health>();
-        if (health != null)
-        {
-            health.TakeDamage(damage);
-        }
+        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+
+        damageable?.TakeDamage(damage);
+
     }
 }
