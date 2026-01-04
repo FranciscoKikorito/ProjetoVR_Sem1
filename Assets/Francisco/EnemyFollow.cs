@@ -4,8 +4,9 @@ using UnityEngine;
 public class EnemyFollow : MonoBehaviour
 {
     public Transform player;
-    public float moveSpeed = 2f;
-    public float rotationSpeed = 10f;
+    public float moveSpeed;
+    public float rotationSpeed;
+    public float stopDistance;
 
     private Rigidbody rb;
 
@@ -26,12 +27,13 @@ public class EnemyFollow : MonoBehaviour
     {
         if (player == null) return;
 
-        // ----- MOVEMENT -----
         Vector3 direction = player.position - transform.position;
-        direction.y = 0f; // ignore vertical difference
-        float distanceSqr = direction.sqrMagnitude;
+        direction.y = 0f;
 
-        if (distanceSqr > 0.01f)
+        float distanceSqr = direction.sqrMagnitude;
+        float stopDistanceSqr = stopDistance * stopDistance;
+
+        if (distanceSqr > stopDistanceSqr)
         {
             direction.Normalize();
 
@@ -45,7 +47,9 @@ public class EnemyFollow : MonoBehaviour
         }
         else
         {
+            // Stop horizontal movement but keep gravity
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }
+
 }
