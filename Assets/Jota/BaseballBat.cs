@@ -8,7 +8,7 @@ public class BaseballBat : MonoBehaviour, IWeapons
 
     public void ApplyBonusStat()
     {
-        player.damage += weaponStats.bonusAttackDamage;
-        player.damage *= weaponStats.bonusAttackDamage;
+        player.baseDamage += weaponStats.bonusAttackDamage;
+        player.baseDamage *= weaponStats.bonusAttackDamage;
     }
 }

@@ -16,6 +16,12 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float initialEnemyHealth;
     [SerializeField] private int initialEnemyNumber;
 
+    [Header("Augment System")]
+    [SerializeField] private AugmentManager augmentManager;
+
+    [Header("Drinking System")]
+    public DrinkAugmentSystem drinkSystem;
+
     private Wave wave;
 
     private float spawnTimer;
@@ -97,7 +103,32 @@ public class Spawner : MonoBehaviour
 
         yield return new WaitForSeconds(timeBetweenWaves);
 
-        // Advance wave
+        // MOSTRAR AUGMENTS AQUI
+        if (augmentManager != null)
+        {
+            augmentManager.ShowAugmentSelection();
+            // Esperar até que o augment seja selecionado
+            while (Time.timeScale == 0f)
+            {
+                yield return null;
+            }
+        }
+
+        // Mostrar bebidas se tiver sistema
+        if (drinkSystem != null)
+        {
+            drinkSystem.ShowDrinks();
+        }
+        else
+        {
+            // Se não tiver sistema, continuar direto
+            ContinueToNextWave();
+        }
+    }
+
+    public void ContinueToNextWave()
+    {
+        // Avançar para próxima wave
         wave.waveNum++;
         wave.maxEnemyNum += enemyIncreaseNumber;
         wave.enemyHealth += enemyHealthIncrease;
@@ -107,6 +138,6 @@ public class Spawner : MonoBehaviour
         spawnTimer = 0f;
         isWaitingForNextWave = false;
 
-        Debug.Log($"Wave {wave.waveNum} started! Enemy Health: {wave.enemyHealth} | Count: {wave.maxEnemyNum}");
+        Debug.Log($"Wave {wave.waveNum} started!");
     }
 }

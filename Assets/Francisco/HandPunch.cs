@@ -2,12 +2,26 @@ using UnityEngine;
 
 public class HandPunch : MonoBehaviour
 {
-    public int damage = 50;
+    public int baseDamage = 50;
     public LayerMask enemyLayer;
 
-    int calculateDamage()
+    int CalculateDamage()
     {
-        return damage;
+        if (Player.instance != null)
+        {
+            return Player.instance.CalculatePlayerDamage(baseDamage);
+        }
+
+        // Fallback se Player.instance não estiver disponível
+        bool isCrit = Random.value <= 0.1f; // 10% crítico padrão
+        float dmg = baseDamage;
+
+        if (isCrit)
+        {
+            dmg *= 1.75f;
+        }
+
+        return (int)dmg;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -19,7 +33,9 @@ public class HandPunch : MonoBehaviour
 
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
 
-        damageable?.TakeDamage(damage);
+        int damageToApply = CalculateDamage();
+
+        damageable?.TakeDamage(damageToApply);
 
     }
 }
