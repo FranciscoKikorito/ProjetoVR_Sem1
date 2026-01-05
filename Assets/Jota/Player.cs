@@ -21,6 +21,14 @@ public class Player : MonoBehaviour, IDamageable
 
     public static Player instance;
 
+    private bool isInvincible = false;
+    [SerializeField] private float invincibilityDuration = 3f;
+
+
+    [Header("Audio")]
+    public AudioClip[] hitSounds;
+    public AudioSource hitAudioSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -130,14 +138,20 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        if (isInvincible) return;
 
         int finalDamage = CalculateDamageAfterArmor(damage, playerBaseStats.armor);
         currentHP -= finalDamage;
+        PlayHitSound();
+
         if (currentHP <= 0)
         {
             OnPlayerDeath();
         }
+
+        StartCoroutine(InvincibilityCoroutine());
     }
+
 
     public void Heal(float amount)
     {
@@ -183,4 +197,22 @@ public class Player : MonoBehaviour, IDamageable
 
         return Mathf.RoundToInt(damage);
     }
+
+    void PlayHitSound()
+    {
+        if (hitAudioSource == null || hitSounds == null || hitSounds.Length == 0)
+            return;
+
+        AudioClip clip = hitSounds[Random.Range(0, hitSounds.Length)];
+
+        hitAudioSource.PlayOneShot(clip);
+    }
+
+    private System.Collections.IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+    }
+
 }

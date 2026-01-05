@@ -3,32 +3,52 @@ using UnityEngine;
 public class HandPunch : MonoBehaviour
 {
     public Player player;
-    //public int baseDamage = 50;
     public LayerMask enemyLayer;
 
-    public AudioClip[] hitSounds;
-
-    [Range(0, 1)] public float volume = 1.0f;
+    public float punchVelocityThreshold = 2f;
+    private Vector3 previousPosition;
+    private float currentVelocity;
 
     [Header("Audio")]
+    public AudioClip[] hitSounds;
     public AudioSource hitAudioSource;
+    [Range(0, 1)] public float volume = 1.0f;
+
+
+    private void Start()
+    {
+        previousPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        // Calculate hand velocity manually
+        currentVelocity = (transform.position - previousPosition).magnitude / Time.deltaTime;
+        previousPosition = transform.position;
+    }
 
     int CalculateDamage()
     {
-        bool isCrit = Random.value <= 0.1f;
+        bool isCrit = Random.value <= Player.instance.currentStats.critChance;
         float dmg = Player.instance.currentStats.attackDamage;
-        Debug.Log("ATTACK DAMAGE: " + dmg);
 
         if (isCrit)
         {
-            dmg *= 1.75f;
+            dmg *= Player.instance.currentStats.critDamage;
         }
 
-        return (int)dmg;
+        // Optionally scale damage by velocity
+        dmg *= Mathf.Clamp(currentVelocity / punchVelocityThreshold, 0.5f, 2f);
+
+        return Mathf.RoundToInt(dmg);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Only apply damage if hand is moving fast enough
+        if (currentVelocity < punchVelocityThreshold)
+            return;
+
         if (((1 << collision.gameObject.layer) & enemyLayer) == 0)
             return;
 
@@ -48,7 +68,6 @@ public class HandPunch : MonoBehaviour
             return;
 
         AudioClip clip = hitSounds[Random.Range(0, hitSounds.Length)];
-
         hitAudioSource.volume = volume;
         hitAudioSource.PlayOneShot(clip);
     }

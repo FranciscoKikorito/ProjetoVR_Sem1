@@ -3958,7 +3958,9 @@ GameObject:
   - component: {fileID: 644308657}
   - component: {fileID: 644308656}
   - component: {fileID: 644308655}
+  - component: {fileID: 644308661}
   - component: {fileID: 644308660}
+  - component: {fileID: 644308662}
   m_Layer: 0
   m_Name: '[BuildingBlock] Camera Rig'
   m_TagString: Untagged
@@ -4140,6 +4142,132 @@ MonoBehaviour:
   currentStats: {fileID: 0}
   currentHP: 0
   activeAugments: []
+  invincibilityDuration: 3
+  hitSounds:
+  - {fileID: 8300000, guid: ed792e96837879c45970a01bb6a988ce, type: 3}
+  - {fileID: 8300000, guid: 1f3d678826b6d534d884e92537a1c93d, type: 3}
+  - {fileID: 8300000, guid: 90021912a6953e94ba7a0e4ba5540ccc, type: 3}
+  hitAudioSource: {fileID: 644308662}
+--- !u!136 &644308661
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644308654}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.6813555
+  m_Direction: 1
+  m_Center: {x: -0, y: 0.84067774, z: 0}
+--- !u!82 &644308662
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644308654}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &644663617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5061,12 +5189,13 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  punchVelocityThreshold: 1.5
   hitSounds:
   - {fileID: 8300000, guid: f9bb2e3fd5bc8aa4a96dc82e858594bc, type: 3}
   - {fileID: 8300000, guid: 07660a33cf28dce4e98672aabf8c4c48, type: 3}
   - {fileID: 8300000, guid: 33c68b1b9836d8c4483f58488aabffba, type: 3}
-  volume: 1
   hitAudioSource: {fileID: 814651176}
+  volume: 1
 --- !u!54 &814651174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10360,12 +10489,13 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  punchVelocityThreshold: 1.5
   hitSounds:
   - {fileID: 8300000, guid: f9bb2e3fd5bc8aa4a96dc82e858594bc, type: 3}
   - {fileID: 8300000, guid: 07660a33cf28dce4e98672aabf8c4c48, type: 3}
   - {fileID: 8300000, guid: 33c68b1b9836d8c4483f58488aabffba, type: 3}
-  volume: 1
   hitAudioSource: {fileID: 1454264159}
+  volume: 1
 --- !u!54 &1454264157
 Rigidbody:
   m_ObjectHideFlags: 0
