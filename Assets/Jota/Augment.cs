@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Augment", menuName = "Scriptable Objects/Augment")]
 public class Augment : ScriptableObject
 {
     [Header("Basic Info")]
