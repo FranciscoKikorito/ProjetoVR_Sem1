@@ -4981,6 +4981,11 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  hitSounds:
+  - {fileID: 8300000, guid: f9bb2e3fd5bc8aa4a96dc82e858594bc, type: 3}
+  - {fileID: 8300000, guid: 07660a33cf28dce4e98672aabf8c4c48, type: 3}
+  - {fileID: 8300000, guid: 33c68b1b9836d8c4483f58488aabffba, type: 3}
+  volume: 1
 --- !u!54 &814651174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9833,6 +9838,11 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  hitSounds:
+  - {fileID: 8300000, guid: f9bb2e3fd5bc8aa4a96dc82e858594bc, type: 3}
+  - {fileID: 8300000, guid: 07660a33cf28dce4e98672aabf8c4c48, type: 3}
+  - {fileID: 8300000, guid: 33c68b1b9836d8c4483f58488aabffba, type: 3}
+  volume: 1
 --- !u!54 &1454264157
 Rigidbody:
   m_ObjectHideFlags: 0
