@@ -4,8 +4,13 @@ public class HandPunch : MonoBehaviour
 {
     public int baseDamage = 50;
     public LayerMask enemyLayer;
-    public AudioClip[] hitSounds; // This creates a list in the Inspector
+
+    public AudioClip[] hitSounds;
+
     [Range(0, 1)] public float volume = 1.0f;
+
+    [Header("Audio")]
+    public AudioSource hitAudioSource; // Assign in Inspector
 
     int CalculateDamage()
     {
@@ -14,8 +19,7 @@ public class HandPunch : MonoBehaviour
             return Player.instance.CalculatePlayerDamage(baseDamage);
         }
 
-        // Fallback se Player.instance não estiver disponível
-        bool isCrit = Random.value <= 0.1f; // 10% crítico padrão
+        bool isCrit = Random.value <= 0.1f;
         float dmg = baseDamage;
 
         if (isCrit)
@@ -31,25 +35,24 @@ public class HandPunch : MonoBehaviour
         if (((1 << collision.gameObject.layer) & enemyLayer) == 0)
             return;
 
-        Debug.Log("Apply damage via collision");
-
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+        if (damageable == null)
+            return;
 
         int damageToApply = CalculateDamage();
+        damageable.TakeDamage(damageToApply);
 
-        damageable?.TakeDamage(damageToApply);
-
-        if (hitSounds != null && hitSounds.Length > 0)
-        {
-            // Pick a random index from 0 to the end of the list
-            int randomIndex = Random.Range(0, hitSounds.Length);
-            AudioClip clipToPlay = hitSounds[randomIndex];
-
-            // Play the sound at the point of impact
-            AudioSource.PlayClipAtPoint(clipToPlay, collision.contacts[0].point, volume);
-        }
-
-       
+        PlayHitSound();
     }
 
+    void PlayHitSound()
+    {
+        if (hitAudioSource == null || hitSounds == null || hitSounds.Length == 0)
+            return;
+
+        AudioClip clip = hitSounds[Random.Range(0, hitSounds.Length)];
+
+        hitAudioSource.volume = volume;
+        hitAudioSource.PlayOneShot(clip);
+    }
 }
