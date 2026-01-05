@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class HandPunch : MonoBehaviour
 {
-    public int baseDamage = 50;
+    public Player player;
+    //public int baseDamage = 50;
     public LayerMask enemyLayer;
 
     public AudioClip[] hitSounds;
@@ -10,17 +11,13 @@ public class HandPunch : MonoBehaviour
     [Range(0, 1)] public float volume = 1.0f;
 
     [Header("Audio")]
-    public AudioSource hitAudioSource; // Assign in Inspector
+    public AudioSource hitAudioSource;
 
     int CalculateDamage()
     {
-        if (Player.instance != null)
-        {
-            return Player.instance.CalculatePlayerDamage(baseDamage);
-        }
-
         bool isCrit = Random.value <= 0.1f;
-        float dmg = baseDamage;
+        float dmg = Player.instance.currentStats.attackDamage;
+        Debug.Log("ATTACK DAMAGE: " + dmg);
 
         if (isCrit)
         {

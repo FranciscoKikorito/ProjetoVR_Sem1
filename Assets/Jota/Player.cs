@@ -15,6 +15,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public float currentHP;
 
+    private int enemyDamagePerHit;
+
     public List<Augment> activeAugments = new List<Augment>();
 
     public static Player instance;
@@ -35,6 +37,15 @@ public class Player : MonoBehaviour, IDamageable
     {
         currentStats = Instantiate(playerBaseStats);
         currentHP = playerBaseStats.health;
+        enemyDamagePerHit = 25;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            TakeDamage(enemyDamagePerHit);
+        }
     }
 
     public void ApplyAugment(Augment augment)
@@ -61,7 +72,7 @@ public class Player : MonoBehaviour, IDamageable
                 currentHP += augment.statValue; // Curar o valor adicional
                 break;
             case StatType.DamageMultiplier:
-                // Alcohol amplification é o multiplicador de dano
+                // Alcohol amplification ï¿½ o multiplicador de dano
                 currentStats.alcoholAmplification += augment.statValue;
                 break;
             case StatType.Defense:
@@ -72,7 +83,7 @@ public class Player : MonoBehaviour, IDamageable
                 currentStats.critChance = Mathf.Min(currentStats.critChance, 100); // Max 100%
                 break;
             case StatType.LifeSteal:
-                // Você pode implementar lifesteal depois
+                // Vocï¿½ pode implementar lifesteal depois
                 break;
         }
     }
@@ -84,17 +95,17 @@ public class Player : MonoBehaviour, IDamageable
             // Encontrar slot apropriado para a arma
             Transform weaponSlot = null;
 
-            // Você pode adaptar isso para seu sistema de armas
+            // Vocï¿½ pode adaptar isso para seu sistema de armas
             if (weapons != null && weapons.Length > 0)
             {
-                // Aqui você pode implementar lógica para equipar a arma
+                // Aqui vocï¿½ pode implementar lï¿½gica para equipar a arma
                 // Por exemplo, substituir uma arma existente
             }
 
             // Instantiate a nova arma
             GameObject newWeapon = Instantiate(augment.weaponPrefab, transform.position, Quaternion.identity);
 
-            // Configurar a arma (você pode precisar adaptar)
+            // Configurar a arma (vocï¿½ pode precisar adaptar)
             IWeapons weaponComponent = newWeapon.GetComponent<IWeapons>();
             if (weaponComponent != null)
             {
@@ -103,27 +114,27 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    private float CalculateDamageReduction (float armor)
+    private float CalculateDamageReduction(float armor)
     {
         return playerBaseStats.armor / (armor + 100f);
     }
 
-    private int CalculateDamageAfterArmor( int incomingDamage, float armor)
+    private int CalculateDamageAfterArmor(int incomingDamage, float armor)
     {
-        float damageReduction = CalculateDamageReduction (armor);
+        float damageReduction = CalculateDamageReduction(armor);
 
         float damageAfterReduction = incomingDamage * (1f - damageReduction);
 
-        return Mathf.RoundToInt (damageAfterReduction);
+        return Mathf.RoundToInt(damageAfterReduction);
     }
 
     public void TakeDamage(int damage)
     {
 
-        int finalDamage = CalculateDamageAfterArmor(damage,playerBaseStats.armor);
+        int finalDamage = CalculateDamageAfterArmor(damage, playerBaseStats.armor);
         currentHP -= finalDamage;
-        if (currentHP <= 0) 
-        { 
+        if (currentHP <= 0)
+        {
             OnPlayerDeath();
         }
     }
@@ -142,7 +153,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void SetArmor(int newArmor)
     {
-        playerBaseStats.armor = Mathf.Max (0, newArmor);
+        playerBaseStats.armor = Mathf.Max(0, newArmor);
     }
 
     public void ResetArmor()
@@ -152,7 +163,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void OnPlayerDeath()
     {
-
+        Debug.Log("Player died");
     }
 
     public int CalculatePlayerDamage(int baseDamage)
@@ -162,7 +173,7 @@ public class Player : MonoBehaviour, IDamageable
         // Aplicar alcohol amplification
         damage *= currentStats.alcoholAmplification;
 
-        // Verificar crítico
+        // Verificar crï¿½tico
         bool isCrit = Random.value <= (currentStats.critChance / 100f);
 
         if (isCrit)

@@ -4,11 +4,11 @@ public class BaseballBat : MonoBehaviour, IWeapons
 {
 
     public WeaponStats weaponStats;
-    public HandPunch player;
+    public Player player;
 
     public void ApplyBonusStat()
     {
-        player.baseDamage += weaponStats.bonusAttackDamage;
-        player.baseDamage *= weaponStats.bonusAttackDamage;
+        player.currentStats.attackDamage += weaponStats.bonusAttackDamage;
+        player.currentStats.attackDamage *= weaponStats.bonusAttackDamage;
     }
 }
