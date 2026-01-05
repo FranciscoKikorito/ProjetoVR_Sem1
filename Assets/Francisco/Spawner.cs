@@ -29,6 +29,9 @@ public class Spawner : MonoBehaviour
     private int enemiesSpawnedThisWave;    // Number of enemies spawned in this wave
     private bool isWaitingForNextWave = false;
 
+    // NEW: prevent same spawn point twice in a row
+    private int lastSpawnPointIndex = -1;
+
     void Start()
     {
         wave = new Wave(1, initialEnemyHealth, initialEnemyNumber);
@@ -61,9 +64,27 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        // Pick a random enemy prefab and spawn point
+        // Pick a random enemy prefab
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+
+        // Pick a spawn point (not the same as last time)
+        int spawnIndex;
+
+        if (spawnPoints.Count == 1)
+        {
+            spawnIndex = 0;
+        }
+        else
+        {
+            do
+            {
+                spawnIndex = Random.Range(0, spawnPoints.Count);
+            }
+            while (spawnIndex == lastSpawnPointIndex);
+        }
+
+        lastSpawnPointIndex = spawnIndex;
+        Transform spawnPoint = spawnPoints[spawnIndex];
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
@@ -103,32 +124,32 @@ public class Spawner : MonoBehaviour
 
         yield return new WaitForSeconds(timeBetweenWaves);
 
-        // MOSTRAR AUGMENTS AQUI
+        // SHOW AUGMENTS
         if (augmentManager != null)
         {
             augmentManager.ShowAugmentSelection();
-            // Esperar até que o augment seja selecionado
+
+            // Wait until augment is selected (game unpaused)
             while (Time.timeScale == 0f)
             {
                 yield return null;
             }
         }
 
-        // Mostrar bebidas se tiver sistema
+        // Show drinks if system exists
         if (drinkSystem != null)
         {
             drinkSystem.ShowDrinks();
         }
         else
         {
-            // Se não tiver sistema, continuar direto
             ContinueToNextWave();
         }
     }
 
     public void ContinueToNextWave()
     {
-        // Avançar para próxima wave
+        // Advance to next wave
         wave.waveNum++;
         wave.maxEnemyNum += enemyIncreaseNumber;
         wave.enemyHealth += enemyHealthIncrease;

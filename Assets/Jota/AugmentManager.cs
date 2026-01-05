@@ -14,9 +14,6 @@ public class AugmentManager : MonoBehaviour
     }
 
     [Header("References")]
-    public GameObject augmentSelectionUI;
-    public Transform augmentButtonsParent;
-    public GameObject augmentButtonPrefab;
     public Spawner waveSpawner;
 
     [Header("Augment Pools")]
@@ -30,12 +27,6 @@ public class AugmentManager : MonoBehaviour
 
     private List<Augment> generatedChoices = new List<Augment>();
 
-    private void Start()
-    {
-        if (augmentSelectionUI != null)
-            augmentSelectionUI.SetActive(false);
-    }
-
     public void ShowAugmentSelection()
     {
         Debug.Log("Mostrando seleção de augments");
@@ -43,12 +34,6 @@ public class AugmentManager : MonoBehaviour
         Time.timeScale = 0f;
 
         GenerateAugmentChoices();
-
-        if (augmentSelectionUI != null)
-        {
-            augmentSelectionUI.SetActive(true);
-            CreateAugmentButtons();
-        }
     }
 
     private void GenerateAugmentChoices()
@@ -130,31 +115,6 @@ public class AugmentManager : MonoBehaviour
         return selectedPool[Random.Range(0, selectedPool.Count)];
     }
 
-    private void CreateAugmentButtons()
-    {
-        // Limpar botões antigos
-        foreach (Transform child in augmentButtonsParent)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Criar novos botões
-        foreach (Augment augment in generatedChoices)
-        {
-            if (augment == null) continue;
-
-            GameObject buttonObj = Instantiate(augmentButtonPrefab, augmentButtonsParent);
-            /*
-            AugmentButtonUI buttonUI = buttonObj.GetComponent<AugmentButtonUI>();
-
-            if (buttonUI != null)
-            {
-                buttonUI.Initialize(augment, this);
-            }
-            */
-        }
-    }
-
     public void SelectAugment(Augment selectedAugment)
     {
         Debug.Log($"Augment selecionado: {selectedAugment.augmentName}");
@@ -163,9 +123,6 @@ public class AugmentManager : MonoBehaviour
         {
             Player.instance.ApplyAugment(selectedAugment);
         }
-
-        if (augmentSelectionUI != null)
-            augmentSelectionUI.SetActive(false);
 
         Time.timeScale = 1f; //unpause
 
