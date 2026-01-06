@@ -19,9 +19,6 @@ public class Spawner : MonoBehaviour
     [Header("Augment System")]
     [SerializeField] private AugmentManager augmentManager;
 
-    [Header("Drinking System")]
-    public DrinkAugmentSystem drinkSystem;
-
     private Wave wave;
 
     private float spawnTimer;
@@ -124,32 +121,20 @@ public class Spawner : MonoBehaviour
 
         yield return new WaitForSeconds(timeBetweenWaves);
 
-        // SHOW AUGMENTS
+        // Chamar sistema de augments
         if (augmentManager != null)
         {
             augmentManager.ShowAugmentSelection();
-
-            // Wait until augment is selected (game unpaused)
-            while (Time.timeScale == 0f)
-            {
-                yield return null;
-            }
-        }
-
-        // Show drinks if system exists
-        if (drinkSystem != null)
-        {
-            drinkSystem.ShowDrinks();
         }
         else
         {
+            // Se não tiver augment manager, continuar direto
             ContinueToNextWave();
         }
     }
 
     public void ContinueToNextWave()
     {
-        // Advance to next wave
         wave.waveNum++;
         wave.maxEnemyNum += enemyIncreaseNumber;
         wave.enemyHealth += enemyHealthIncrease;
