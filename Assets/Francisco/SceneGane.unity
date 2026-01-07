@@ -3711,16 +3711,23 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 505d8592d72aada45a5a34b01c6bc7bd, type: 2}
     uncommonAugments:
     - {fileID: 11400000, guid: cdd66137cee7a2c49ab8ce49246925e8, type: 2}
-    rareAugments: []
-    epicAugments: []
-    legendaryAugments: []
-  weaponAugments:
-    commonAugments: []
-    uncommonAugments: []
     rareAugments:
+    - {fileID: 11400000, guid: c5c06b61e7d74014fbad52cf16d30f97, type: 2}
+    epicAugments:
+    - {fileID: 11400000, guid: ac291044df86c7849ac51ad4ed1c1ac4, type: 2}
+    legendaryAugments:
+    - {fileID: 11400000, guid: 71441d5575980784dbbce4f7c85f1f24, type: 2}
+  weaponAugments:
+    commonAugments:
+    - {fileID: 11400000, guid: e8939d86641c17747a59a8e8db58e061, type: 2}
+    uncommonAugments:
     - {fileID: 11400000, guid: 520102d19805abf4694fd4066df7dcfd, type: 2}
-    epicAugments: []
-    legendaryAugments: []
+    rareAugments:
+    - {fileID: 11400000, guid: cee679d776bdaaf40a12e9da081c180a, type: 2}
+    epicAugments:
+    - {fileID: 11400000, guid: 1f63f48f7836c8d47ae4c69de1cd8d3b, type: 2}
+    legendaryAugments:
+    - {fileID: 11400000, guid: 57e7adef59c41a3498391ada55a0865e, type: 2}
   choicesPerWave: 3
   weaponChance: 0.5
 --- !u!4 &615361367

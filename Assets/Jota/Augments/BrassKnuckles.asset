@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: CriticalChance
+  m_Name: BrassKnuckles
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: 
+  augmentName: Brass Knuckles
   description: 
   icon: {fileID: 0}
-  augmentType: 1
+  augmentType: 0
   rarity: 0
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 5291837561992936627, guid: 7fb0bcfa15746ea49932cdf42ff3f9ef, type: 3}
   weaponSlot: RightHand
-  statType: 0
-  statValue: 0
+  statType: 2
+  statValue: 25
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 0
