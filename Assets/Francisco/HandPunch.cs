@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class HandPunch : MonoBehaviour
 {
     public Player player;
@@ -14,7 +15,9 @@ public class HandPunch : MonoBehaviour
     public AudioSource hitAudioSource;
     [Range(0, 1)] public float volume = 1.0f;
 
-
+    [Header("VFX")]
+    public GameObject[] hitVFXPrefabs; // This is now an array (list)
+    public float destroyVFXAfter = 2.0f;
     private void Start()
     {
         previousPosition = transform.position;
@@ -58,6 +61,7 @@ public class HandPunch : MonoBehaviour
 
         int damageToApply = CalculateDamage();
         damageable.TakeDamage(damageToApply);
+        SpawnHitVFX(collision);
 
         PlayHitSound();
     }
@@ -71,4 +75,23 @@ public class HandPunch : MonoBehaviour
         hitAudioSource.volume = volume;
         hitAudioSource.PlayOneShot(clip);
     }
+
+    void SpawnHitVFX(Collision collision)
+    {
+        // Check if the array is empty or null
+        if (hitVFXPrefabs != null && hitVFXPrefabs.Length > 0)
+        {
+            // Pick a random index from 0 to the end of your list
+            int randomIndex = Random.Range(0, hitVFXPrefabs.Length);
+            GameObject selectedVFX = hitVFXPrefabs[randomIndex];
+
+            if (selectedVFX != null)
+            {
+                ContactPoint contact = collision.contacts[0];
+                GameObject vfx = Instantiate(selectedVFX, contact.point, Quaternion.LookRotation(contact.normal));
+                Destroy(vfx, destroyVFXAfter);
+            }
+        }
+    }
+
 }
