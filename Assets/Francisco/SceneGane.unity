@@ -3647,9 +3647,9 @@ MonoBehaviour:
   - {fileID: 1377360728}
   - {fileID: 1126014907}
   - {fileID: 891494941}
-  spawnFrequency: 3
+  spawnFrequency: 5
   timeBetweenWaves: 0
-  enemyHealthIncrease: 50
+  enemyHealthIncrease: 25
   enemyIncreaseNumber: 1
   initialEnemyHealth: 100
   initialEnemyNumber: 1
@@ -6626,7 +6626,7 @@ Transform:
   m_GameObject: {fileID: 901312969}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.338, y: 0.643, z: 19.9}
+  m_LocalPosition: {x: -3.338, y: 0.643, z: 19.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9934,7 +9934,7 @@ Transform:
   m_GameObject: {fileID: 1269874298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.753, y: 0.643, z: 19.9}
+  m_LocalPosition: {x: -2.853, y: 0.643, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11228,7 +11228,7 @@ Transform:
   m_GameObject: {fileID: 1440826024}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.888, y: 0.643, z: 19.9}
+  m_LocalPosition: {x: -3.788, y: 0.643, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

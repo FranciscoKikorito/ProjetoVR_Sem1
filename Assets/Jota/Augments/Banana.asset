@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: 
-  description: 
+  description: Banana
   icon: {fileID: 0}
   augmentType: 0
   rarity: 3

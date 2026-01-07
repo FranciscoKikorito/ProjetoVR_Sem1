@@ -42,7 +42,6 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        // Dont spawn while waiting for next wave
         if (isWaitingForNextWave) return;
 
         spawnTimer -= Time.deltaTime;
@@ -61,12 +60,9 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        // Pick a random enemy prefab
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
 
-        // Pick a spawn point (not the same as last time)
         int spawnIndex;
-
         if (spawnPoints.Count == 1)
         {
             spawnIndex = 0;
@@ -76,8 +72,7 @@ public class Spawner : MonoBehaviour
             do
             {
                 spawnIndex = Random.Range(0, spawnPoints.Count);
-            }
-            while (spawnIndex == lastSpawnPointIndex);
+            } while (spawnIndex == lastSpawnPointIndex);
         }
 
         lastSpawnPointIndex = spawnIndex;
@@ -85,7 +80,6 @@ public class Spawner : MonoBehaviour
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        // Initialize the enemy's health
         Health health = enemy.GetComponentInChildren<Health>();
         if (health != null)
         {
@@ -102,7 +96,6 @@ public class Spawner : MonoBehaviour
         Debug.Log($"Spawned enemy {enemiesSpawnedThisWave}/{wave.maxEnemyNum} at {spawnPoint.position}");
     }
 
-    // Called by enemy on death
     public void NotifyDeath()
     {
         currentEnemies--;
@@ -121,14 +114,12 @@ public class Spawner : MonoBehaviour
 
         yield return new WaitForSeconds(timeBetweenWaves);
 
-        // Chamar sistema de augments
         if (augmentManager != null)
         {
             augmentManager.ShowAugmentSelection();
         }
         else
         {
-            // Se não tiver augment manager, continuar direto
             ContinueToNextWave();
         }
     }
@@ -136,14 +127,28 @@ public class Spawner : MonoBehaviour
     public void ContinueToNextWave()
     {
         wave.waveNum++;
-        wave.maxEnemyNum += enemyIncreaseNumber;
+
+        // Increase enemy number only every 2 waves
+        if (wave.waveNum % 2 == 1)
+        {
+            wave.maxEnemyNum += enemyIncreaseNumber;
+        }
+
+        // Always increase health
         wave.enemyHealth += enemyHealthIncrease;
+
+        // Reduce spawn timer at waves 5 and 10...
+        if (wave.waveNum == 5 || wave.waveNum == 10 || wave.waveNum == 15 || wave.waveNum == 20)
+        {
+            spawnFrequency = Mathf.Max(0f, spawnFrequency - 1f);
+            Debug.Log($"Wave {wave.waveNum}: spawn frequency reduced! New spawnFrequency = {spawnFrequency}");
+        }
 
         enemiesSpawnedThisWave = 0;
         currentEnemies = 0;
         spawnTimer = 0f;
         isWaitingForNextWave = false;
 
-        Debug.Log($"Wave {wave.waveNum} started!");
+        Debug.Log($"Wave {wave.waveNum} started! Enemy count: {wave.maxEnemyNum}, Health: {wave.enemyHealth}");
     }
 }

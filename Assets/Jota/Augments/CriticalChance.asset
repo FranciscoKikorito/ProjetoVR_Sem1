@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CriticalChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: 
-  description: 
+  description: '+15% Critical Chance '
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 0
-  statValue: 0
+  statValue: 0.15
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 0

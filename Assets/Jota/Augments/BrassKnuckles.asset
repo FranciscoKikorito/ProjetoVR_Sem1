@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BrassKnuckles
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Brass Knuckles
-  description: 
+  description: Brass Knuckles
   icon: {fileID: 0}
   augmentType: 0
   rarity: 0
