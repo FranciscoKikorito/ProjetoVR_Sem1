@@ -79,22 +79,19 @@ public class Player : MonoBehaviour, IDamageable
                 currentStats.health += augment.statValue;
                 //currentHP += augment.statValue; // Curar o valor adicional
                 break;
-            case StatType.AlcoholAmplification:
+            case StatType.DamageMultiplier:
                 // Alcohol amplification � o multiplicador de dano
                 currentStats.alcoholAmplification += augment.statValue;
                 break;
-            case StatType.Armor:
+            case StatType.Defense:
                 currentStats.armor += (int)augment.statValue;
                 break;
             case StatType.CriticalChance:
                 currentStats.critChance += augment.statValue;
-                //currentStats.critChance = Mathf.Min(currentStats.critChance, 100); // Max 100%
+                currentStats.critChance = Mathf.Min(currentStats.critChance, 100); // Max 100%
                 break;
-            case StatType.CriticalDamage:
-                currentStats.critDamage += augment.statValue;
-                break;
-            case StatType.AttackDamage:
-                currentStats.attackDamage += (int)augment.statValue;
+            case StatType.LifeSteal:
+                // Voc� pode implementar lifesteal depois
                 break;
         }
     }

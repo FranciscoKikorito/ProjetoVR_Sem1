@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: Banana
+  m_Name: SuperBanana
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: Banana
-  description: I heard banana? get this and deal big pp damage
+  augmentName: Super Banana
+  description: Super Banana
   icon: {fileID: 0}
   augmentType: 0
-  rarity: 3
+  rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
-  statType: 5
-  statValue: 2
+  statType: 3
+  statValue: 1
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 0
