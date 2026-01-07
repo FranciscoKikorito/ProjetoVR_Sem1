@@ -9,9 +9,8 @@ public enum AugmentType
 public enum StatType
 {
     Health,
-    AttackDamage,
-    AlcoholAmplification, // Alcohol Amplification
-    Armor, // Armor
+    DamageMultiplier, // Alcohol Amplification
+    Defense, // Armor
     CriticalChance,
-    CriticalDamage,
+    LifeSteal
 }
