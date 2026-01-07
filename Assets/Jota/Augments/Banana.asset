@@ -20,7 +20,7 @@ MonoBehaviour:
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 1
-  statValue: 1000
+  statValue: 10
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 0

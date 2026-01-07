@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SuperBaseballBat
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Super Baseball Bat
-  description: 
+  description: Super Baseball Bat
   icon: {fileID: 0}
   augmentType: 0
   rarity: 4

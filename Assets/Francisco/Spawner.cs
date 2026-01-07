@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
 
     [Header("Augment System")]
     [SerializeField] private AugmentManager augmentManager;
+    [SerializeField] private Player player;
 
     private Wave wave;
 
@@ -141,6 +142,7 @@ public class Spawner : MonoBehaviour
         if (wave.waveNum == 5 || wave.waveNum == 10 || wave.waveNum == 15 || wave.waveNum == 20)
         {
             spawnFrequency = Mathf.Max(0f, spawnFrequency - 1f);
+            player.enemyDamagePerHit += 25;
             Debug.Log($"Wave {wave.waveNum}: spawn frequency reduced! New spawnFrequency = {spawnFrequency}");
         }
 

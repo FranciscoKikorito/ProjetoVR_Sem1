@@ -3,7 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - QDSUIToggleButton
+  - QDSUIToggleSwitch
+  - QDSUITooltip
+  - QDSUISharedThemeColor
+  - QDSUIAccentColor
+  - QDSUIBorderlessButton
+  - QDSUISecondaryButton
+  - QDSUIToggleBorderlessButton
+  - QDSUIIcon
+  - QDSUITextSecondaryColor
+  - SamplesInfoPanel
+  - QDSUIBackplateGradient
+  - QDSUISection
+  - QDSUIToggleCheckboxRadio
+  - QDSUIPrimaryButton
+  - QDSUITextInvertedColor
+  - QDSUITextSecondaryInvertedColor
+  - QDSUIDestructiveButton
+  - QDSUITextInputField
   layers:
   - Default
   - TransparentFX
@@ -11,7 +30,7 @@ TagManager:
   - Enemy
   - Water
   - UI
-  - 
+  - Overlay UI
   - 
   - 
   - 

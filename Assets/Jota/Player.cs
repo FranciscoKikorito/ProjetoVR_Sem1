@@ -15,7 +15,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public float currentHP;
 
-    private int enemyDamagePerHit;
+    public int enemyDamagePerHit;
 
     public List<Augment> activeAugments = new List<Augment>();
 
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Start()
     {
         currentStats = Instantiate(playerBaseStats);
-        currentHP = playerBaseStats.health;
+        currentHP = currentStats.health;
         enemyDamagePerHit = 25;
     }
 
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             case StatType.Health:
                 currentStats.health += augment.statValue;
-                currentHP += augment.statValue; // Curar o valor adicional
+                //currentHP += augment.statValue; // Curar o valor adicional
                 break;
             case StatType.DamageMultiplier:
                 // Alcohol amplification � o multiplicador de dano
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour, IDamageable
                 currentStats.armor += (int)augment.statValue;
                 break;
             case StatType.CriticalChance:
-                currentStats.critChance += (int)augment.statValue;
+                currentStats.critChance += augment.statValue;
                 currentStats.critChance = Mathf.Min(currentStats.critChance, 100); // Max 100%
                 break;
             case StatType.LifeSteal:
@@ -122,18 +122,18 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    /*
     private float CalculateDamageReduction(float armor)
     {
         return playerBaseStats.armor / (armor + 100f);
-    }
+    }*/
 
     private int CalculateDamageAfterArmor(int incomingDamage, float armor)
     {
-        float damageReduction = CalculateDamageReduction(armor);
+        //float damageReduction = CalculateDamageReduction(armor);
+        float damage = incomingDamage - armor;
 
-        float damageAfterReduction = incomingDamage * (1f - damageReduction);
-
-        return Mathf.RoundToInt(damageAfterReduction);
+        return Mathf.RoundToInt(damage);
     }
 
     public void TakeDamage(int damage)
@@ -141,7 +141,10 @@ public class Player : MonoBehaviour, IDamageable
         if (isInvincible) return;
 
         int finalDamage = CalculateDamageAfterArmor(damage, playerBaseStats.armor);
-        currentHP -= finalDamage;
+
+
+        currentStats.health -= finalDamage;
+
         PlayHitSound();
 
         if (currentHP <= 0)
@@ -188,7 +191,7 @@ public class Player : MonoBehaviour, IDamageable
         damage *= currentStats.alcoholAmplification;
 
         // Verificar cr�tico
-        bool isCrit = Random.value <= (currentStats.critChance / 100f);
+        bool isCrit = Random.value <= (currentStats.critChance * 100f);
 
         if (isCrit)
         {

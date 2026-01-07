@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AlcoholAmplification
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Fiery Whisky
-  description: +15% Alcohol Amplification (Damage)
+  description: +15% Alcohol Amplification (Damage Multiplier)
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1

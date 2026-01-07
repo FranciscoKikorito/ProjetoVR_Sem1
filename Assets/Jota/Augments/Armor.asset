@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Armor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Good beer
-  description: +25 armor
+  description: +15 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 2
-  statValue: 25
+  statValue: 15
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

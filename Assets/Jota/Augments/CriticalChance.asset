@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 0
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
-  statType: 0
+  statType: 3
   statValue: 0.15
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
