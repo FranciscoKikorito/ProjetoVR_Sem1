@@ -42,15 +42,15 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: e5ebc74aa805e39439103fa97ef465d2, type: 2}
     - target: {fileID: 644397509381971967, guid: d65bb4016db8bce48abb258b5fa2ff61, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 644397509381971967, guid: d65bb4016db8bce48abb258b5fa2ff61, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 644397509381971967, guid: d65bb4016db8bce48abb258b5fa2ff61, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 644397509381971967, guid: d65bb4016db8bce48abb258b5fa2ff61, type: 3}
       propertyPath: m_LocalPosition.x
@@ -259,7 +259,7 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 0.5
   rotationSpeed: 10
-  stopDistance: 0.85
+  stopDistance: 0.65
 --- !u!114 &-1244822512528654224
 MonoBehaviour:
   m_ObjectHideFlags: 0

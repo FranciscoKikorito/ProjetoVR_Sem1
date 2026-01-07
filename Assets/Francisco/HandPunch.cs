@@ -5,7 +5,7 @@ public class HandPunch : MonoBehaviour
     public Player player;
     public LayerMask enemyLayer;
 
-    public float punchVelocityThreshold = 2f;
+    public float punchVelocityThreshold = 1.5f;
     private Vector3 previousPosition;
     private float currentVelocity;
 

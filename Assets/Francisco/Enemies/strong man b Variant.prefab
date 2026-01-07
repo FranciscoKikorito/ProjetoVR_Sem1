@@ -281,7 +281,7 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 0.5
   rotationSpeed: 10
-  stopDistance: 0.85
+  stopDistance: 0.65
 --- !u!114 &-3258161200766624052
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,15 +15,15 @@ public class AugmentManager : MonoBehaviour
 
     [Header("References")]
     public Spawner waveSpawner;
-    public Transform playerHead; // Arraste a câmera principal aqui
+    public Transform playerHead; // Arraste a cï¿½mera principal aqui
 
     [Header("Drink Settings")]
     public int drinksPerWave = 3;
     public float drinkDistance = 0.4f;
-    public Transform[] drinkSpawnPoints; // Pontos no balcão onde bebidas spawnam
+    public Transform[] drinkSpawnPoints; // Pontos no balcï¿½o onde bebidas spawnam
 
     [Header("Drink prefabs")]
-    public GameObject[] drinkPrefabs; // Vários modelos de copo/bebida
+    public GameObject[] drinkPrefabs; // Vï¿½rios modelos de copo/bebida
 
     [Header("Augment Pools")]
     public AugmentPool statAugments;
@@ -46,7 +46,7 @@ public class AugmentManager : MonoBehaviour
 
     void Update()
     {
-        // Verificar se o jogador está bebendo
+        // Verificar se o jogador estï¿½ bebendo
         if (isSelectionActive && playerHead != null)
         {
             CheckForDrinkConsumption();
@@ -56,7 +56,7 @@ public class AugmentManager : MonoBehaviour
 
     public void ShowAugmentSelection()
     {
-        Debug.Log("Mostrando seleção de augments");
+        Debug.Log("Mostrando seleï¿½ï¿½o de augments");
 
         isSelectionActive = true;
 
@@ -150,7 +150,7 @@ public class AugmentManager : MonoBehaviour
         // Garantir que temos augments suficientes
         if (generatedChoices.Count < drinksPerWave)
         {
-            Debug.LogWarning("Não há augments suficientes!");
+            Debug.LogWarning("Nï¿½o hï¿½ augments suficientes!");
             return;
         }
 
@@ -183,7 +183,7 @@ public class AugmentManager : MonoBehaviour
         CreateDrinkText(drink, augment);
 
         // Efeito visual opcional: fazer a bebida flutuar
-        StartCoroutine(FloatDrink(drink));
+        //StartCoroutine(FloatDrink(drink));
     }
 
     private GameObject GetDrinkPrefabForIndex(int index)
@@ -194,7 +194,7 @@ public class AugmentManager : MonoBehaviour
             return null;
         }
 
-        // Cicla entre os prefabs disponíveis
+        // Cicla entre os prefabs disponï¿½veis
         int prefabIndex = index % drinkPrefabs.Length;
         return drinkPrefabs[prefabIndex];
     }
@@ -266,10 +266,10 @@ public class AugmentManager : MonoBehaviour
         // Limpar todas as bebidas
         ClearCurrentDrinks();
 
-        // Desativar seleção
+        // Desativar seleï¿½ï¿½o
         isSelectionActive = false;
 
-        // Continuar para próxima wave
+        // Continuar para prï¿½xima wave
         if (waveSpawner != null)
         {
             waveSpawner.ContinueToNextWave();
@@ -303,7 +303,7 @@ public class AugmentManager : MonoBehaviour
         textMesh.color = GetColorByRarity(augment.rarity);
     }
 
-    // Método público para seleção manual (se quiser manter compatibilidade)
+    // Mï¿½todo pï¿½blico para seleï¿½ï¿½o manual (se quiser manter compatibilidade)
     public void SelectAugment(Augment selectedAugment)
     {
         Debug.Log($"Augment selecionado manualmente: {selectedAugment.augmentName}");
