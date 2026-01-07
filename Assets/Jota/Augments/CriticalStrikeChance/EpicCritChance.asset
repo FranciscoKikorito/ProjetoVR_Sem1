@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: SuperHealth
+  m_Name: EpicCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: Super Health
-  description: '+100 health
+  augmentName: Sherry Wine
+  description: 'Tastes good, but too much alcohol perhaps?
 
-'
+
+    +50% crit chance.'
   icon: {fileID: 0}
   augmentType: 1
-  rarity: 2
+  rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
-  statType: 0
-  statValue: 100
+  statType: 4
+  statValue: 0.5
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
-  canStack: 1
-  maxStacks: 4
+  canStack: 0
+  maxStacks: 1

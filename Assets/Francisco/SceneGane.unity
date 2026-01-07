@@ -6320,26 +6320,39 @@ MonoBehaviour:
   displayDuration: 3
   statAugments:
     commonAugments:
-    - {fileID: 11400000, guid: 00a9061e74d190a41b8bc17b17f5e3da, type: 2}
+    - {fileID: 11400000, guid: 71441d5575980784dbbce4f7c85f1f24, type: 2}
+    - {fileID: 11400000, guid: 8ec4be09e7ccd764cb1a0e5a9e6bcefd, type: 2}
     - {fileID: 11400000, guid: 505d8592d72aada45a5a34b01c6bc7bd, type: 2}
+    - {fileID: 11400000, guid: e81d5db549392eb418c5fe6492bf8871, type: 2}
+    - {fileID: 11400000, guid: ac291044df86c7849ac51ad4ed1c1ac4, type: 2}
     uncommonAugments:
+    - {fileID: 11400000, guid: 00a9061e74d190a41b8bc17b17f5e3da, type: 2}
     - {fileID: 11400000, guid: cdd66137cee7a2c49ab8ce49246925e8, type: 2}
+    - {fileID: 11400000, guid: bcba3ffb8a4f96649979dd7eac373d55, type: 2}
+    - {fileID: 11400000, guid: ee824f1d498d9b54894be182420965ac, type: 2}
     rareAugments:
     - {fileID: 11400000, guid: c5c06b61e7d74014fbad52cf16d30f97, type: 2}
+    - {fileID: 11400000, guid: 1e83b84c39200ea4f8edeed1a3317317, type: 2}
+    - {fileID: 11400000, guid: 865276e194d4cff459ca6ff686ae721c, type: 2}
     epicAugments:
-    - {fileID: 11400000, guid: ac291044df86c7849ac51ad4ed1c1ac4, type: 2}
+    - {fileID: 11400000, guid: 5847ed89d41476e49866534facd2fee4, type: 2}
+    - {fileID: 11400000, guid: 0e26f8f0663702e478855c905713c71a, type: 2}
+    - {fileID: 11400000, guid: b9fcbe97f4da62f41a2594b19aadddc1, type: 2}
     legendaryAugments:
-    - {fileID: 11400000, guid: 71441d5575980784dbbce4f7c85f1f24, type: 2}
+    - {fileID: 11400000, guid: d1498dd9a5cbb624d8ef6b1cb992f9f8, type: 2}
+    - {fileID: 11400000, guid: 0c2b8815387efe34fa2c93b440e344a3, type: 2}
+    - {fileID: 11400000, guid: 5eeed54b7ddde414cb59411d47e1bb91, type: 2}
   weaponAugments:
     commonAugments:
     - {fileID: 11400000, guid: e8939d86641c17747a59a8e8db58e061, type: 2}
     uncommonAugments:
     - {fileID: 11400000, guid: 520102d19805abf4694fd4066df7dcfd, type: 2}
     rareAugments:
-    - {fileID: 11400000, guid: cee679d776bdaaf40a12e9da081c180a, type: 2}
+    - {fileID: 11400000, guid: d830565b37e32ae4597984452805a883, type: 2}
     epicAugments:
     - {fileID: 11400000, guid: 1f63f48f7836c8d47ae4c69de1cd8d3b, type: 2}
     legendaryAugments:
+    - {fileID: 11400000, guid: cee679d776bdaaf40a12e9da081c180a, type: 2}
     - {fileID: 11400000, guid: 57e7adef59c41a3498391ada55a0865e, type: 2}
   choicesPerWave: 3
   weaponChance: 0.5

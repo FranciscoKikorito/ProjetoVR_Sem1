@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: AlcoholAmplification
+  m_Name: RareHP
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: Fiery Whisky
-  description: +15% Alcohol Amplification (Damage Multiplier)
+  augmentName: Porto Flip
+  description: "\xD4 pah, n\xE3o d\xE1 meu\n\n+100 hp\n"
   icon: {fileID: 0}
   augmentType: 1
-  rarity: 1
+  rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
-  statType: 1
-  statValue: 0.15
+  statType: 0
+  statValue: 100
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1
-  maxStacks: 999
+  maxStacks: 4

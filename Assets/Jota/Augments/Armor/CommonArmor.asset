@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: Banana
+  m_Name: CommonArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: 
-  description: Banana
+  augmentName: Good beer
+  description: 'This beer tastes good! ozzy approved!
+
+    +15 armor'
   icon: {fileID: 0}
-  augmentType: 0
-  rarity: 3
+  augmentType: 1
+  rarity: 0
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
-  statType: 1
-  statValue: 10
+  statType: 3
+  statValue: 15
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
-  canStack: 0
-  maxStacks: 1
+  canStack: 1
+  maxStacks: 999

@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: BonusHP
+  m_Name: SuperBrassKnuckles
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: BonusHP
-  description: +100 bonus hp
+  augmentName: Super Brass Knuckles
+  description: 'They aren''t even made of brass.
+
+
+    +100 armor'
   icon: {fileID: 0}
-  augmentType: 1
-  rarity: 4
+  augmentType: 0
+  rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
-  statType: 4
+  statType: 3
   statValue: 100
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
-  canStack: 1
-  maxStacks: 999
+  canStack: 0
+  maxStacks: 1

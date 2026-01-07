@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: BrassKnuckles
+  m_Name: UncommonHP
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: Brass Knuckles
-  description: Brass Knuckles
+  augmentName: Caipirinha
+  description: 'Vai uma caipirinha?
+
+    +50 HP'
   icon: {fileID: 0}
-  augmentType: 0
-  rarity: 0
-  weaponPrefab: {fileID: 5291837561992936627, guid: 7fb0bcfa15746ea49932cdf42ff3f9ef, type: 3}
+  augmentType: 1
+  rarity: 1
+  weaponPrefab: {fileID: 919132149155446097, guid: 3f44be8a6fd802048859a1d5cf7ec115, type: 3}
   weaponSlot: RightHand
-  statType: 1
-  statValue: 15
+  statType: 0
+  statValue: 50
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
-  canStack: 0
-  maxStacks: 1
+  canStack: 1
+  maxStacks: 999

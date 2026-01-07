@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: Armor
+  m_Name: UncommonCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: Good beer
-  description: +15 armor
+  augmentName: Port Wine
+  description: 'What about drinking something good for once?
+
+
+    +25% crit chance'
   icon: {fileID: 0}
   augmentType: 1
-  rarity: 3
+  rarity: 1
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
-  statType: 2
-  statValue: 15
+  statType: 4
+  statValue: 0.25
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1
