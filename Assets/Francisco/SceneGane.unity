@@ -7325,9 +7325,9 @@ MonoBehaviour:
   hitAudioSource: {fileID: 654741874}
   volume: 1
   hitVFXPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 500345726442012828, guid: 50a810bfd70577b41a2d43ae0241ea2d, type: 3}
+  - {fileID: 5586783540032275536, guid: 6e57a3cf9435eb14fb9928fa4ee60c63, type: 3}
+  - {fileID: 467751860875805754, guid: 7c6d9bb9c8994364dbe5ba2e32dd4d13, type: 3}
   destroyVFXAfter: 2
 --- !u!54 &654741876
 Rigidbody:
