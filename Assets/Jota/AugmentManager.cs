@@ -53,7 +53,6 @@ public class AugmentManager : MonoBehaviour
         }
     }
 
-
     public void ShowAugmentSelection()
     {
         Debug.Log("Mostrando sele��o de augments");
