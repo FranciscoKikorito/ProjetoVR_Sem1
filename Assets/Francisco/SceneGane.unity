@@ -4069,6 +4069,8 @@ MonoBehaviour:
   - {fileID: 5598844069330772471, guid: 496fca7866f024342af2114329d2ea10, type: 3}
   - {fileID: 7155464379668762052, guid: 7b813f0e439379040a074695c8f5bfe9, type: 3}
   - {fileID: 8718615205354974054, guid: 438e6b9e7c6b92e448bf74d5396ec1f7, type: 3}
+  augmentDisplayText: {fileID: 1128874948}
+  displayDuration: 3
   statAugments:
     commonAugments:
     - {fileID: 11400000, guid: 00a9061e74d190a41b8bc17b17f5e3da, type: 2}

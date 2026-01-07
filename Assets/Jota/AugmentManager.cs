@@ -1,5 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AugmentManager : MonoBehaviour
 {
@@ -25,6 +28,10 @@ public class AugmentManager : MonoBehaviour
     [Header("Drink prefabs")]
     public GameObject[] drinkPrefabs; // V�rios modelos de copo/bebida
 
+    [Header("HUD Display")]
+    public TextMeshProUGUI augmentDisplayText; // Texto na tela do jogador
+    public float displayDuration = 3f; // Tempo que o texto fica visível
+
     [Header("Augment Pools")]
     public AugmentPool statAugments;
     public AugmentPool weaponAugments;
@@ -42,6 +49,10 @@ public class AugmentManager : MonoBehaviour
     {
         if (playerHead == null)
             playerHead = Camera.main?.transform;
+
+        // Esconder display inicialmente
+        if (augmentDisplayText != null)
+            augmentDisplayText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -62,6 +73,9 @@ public class AugmentManager : MonoBehaviour
         GenerateAugmentChoices();
 
         SpawnDrinks();
+
+        // Mostrar instrução na tela
+        ShowInstructionText();
     }
 
     private void GenerateAugmentChoices()
@@ -108,6 +122,28 @@ public class AugmentManager : MonoBehaviour
             }
 
             generatedChoices.Add(newAugment);
+        }
+    }
+
+    private void ShowInstructionText()
+    {
+        if (augmentDisplayText != null)
+        {
+            augmentDisplayText.text = "<color=yellow>Chose your drink!!</color>\nGet your head closer to drink";
+            augmentDisplayText.gameObject.SetActive(true);
+
+            // Esconder após alguns segundos
+            StartCoroutine(HideTextAfterDelay(3f));
+        }
+    }
+
+    private IEnumerator HideTextAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (augmentDisplayText != null && isSelectionActive)
+        {
+            augmentDisplayText.gameObject.SetActive(false);
         }
     }
 
@@ -256,6 +292,9 @@ public class AugmentManager : MonoBehaviour
         Augment selectedAugment = drinkScript.augment;
         Debug.Log("Augment selecionado: " + selectedAugment.augmentName);
 
+        // MOSTRAR AUGMENT NA TELA DO JOGADOR
+        ShowAugmentOnScreen(selectedAugment);
+
         // Aplicar augment
         if (Player.instance != null)
         {
@@ -272,6 +311,47 @@ public class AugmentManager : MonoBehaviour
         if (waveSpawner != null)
         {
             waveSpawner.ContinueToNextWave();
+        }
+    }
+
+    private void ShowAugmentOnScreen(Augment augment)
+    {
+        if (augmentDisplayText == null) return;
+
+        string rarityColor = GetRarityColorCode(augment.rarity);
+        string augmentType = augment.augmentType == AugmentType.Weapon ? "ARMA" : "STAT";
+
+        augmentDisplayText.text =
+            $"<size=150%><color={rarityColor}>{augment.augmentName}</color></size>\n" +
+            $"<color=white>{augment.description}</color>\n\n" +
+            $"<color=#FFA500>Tipo: {augmentType} | Raridade: {augment.rarity}</color>";
+
+        augmentDisplayText.gameObject.SetActive(true);
+
+        // Esconder após displayDuration segundos
+        StartCoroutine(HideDisplayAfterDelay(displayDuration));
+    }
+
+    private string GetRarityColorCode(Rarity rarity)
+    {
+        switch (rarity)
+        {
+            case Rarity.Common: return "white";
+            case Rarity.Uncommon: return "green";
+            case Rarity.Rare: return "blue";
+            case Rarity.Epic: return "magenta";
+            case Rarity.Legendary: return "yellow";
+            default: return "white";
+        }
+    }
+
+    private IEnumerator HideDisplayAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (augmentDisplayText != null)
+        {
+            augmentDisplayText.gameObject.SetActive(false);
         }
     }
 
