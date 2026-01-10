@@ -7080,7 +7080,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a7c0177d860bfb7458e6492c962257cc, type: 2}
   choicesPerWave: 3
   weaponChance: 0.25
-  drinkTextHeight: 2
 --- !u!4 &615361367
 Transform:
   m_ObjectHideFlags: 0
@@ -12204,7 +12203,7 @@ TextMesh:
   m_Alignment: 0
   m_TabSize: 4
   m_FontSize: 100
-  m_FontStyle: 0
+  m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 0}
   m_Color:
