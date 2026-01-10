@@ -1,10 +1,18 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Health : MonoBehaviour , IDamageable
+public class Health : MonoBehaviour, IDamageable
 {
     private int currentHealth;
     private Spawner spawner;
     private float maxHealth;
+
+    // ADD ↓↓↓
+    private Animator animator;
+    private bool isDead = false;
+
+    void Awake()
+    {
+    }
 
     // Called by spawner when spawning
     public void InitializeEnemy(float healthValue, Spawner spawnerRef)
@@ -17,6 +25,8 @@ public class Health : MonoBehaviour , IDamageable
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return; // ADD
+
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. Remaining: {currentHealth}");
 
@@ -28,12 +38,22 @@ public class Health : MonoBehaviour , IDamageable
 
     private void Die()
     {
+        if (isDead) return; // ADD
+        isDead = true;
+
         Debug.Log($"{gameObject.name} died!");
-        // Notify the spawner that an enemy died
+
+        // ADD ↓↓↓ trigger animation
+        if (animator != null)
+            animator.SetBool("IsDead", true);
+
+        // Notify the spawner
         if (spawner != null)
         {
             spawner.NotifyDeath();
         }
-        Destroy(gameObject);
+
+        // CHANGE ↓↓↓ delay destroy
+        Destroy(gameObject, 3f); // match death animation length
     }
 }
