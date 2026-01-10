@@ -217,8 +217,8 @@ public class AugmentManager : MonoBehaviour
         // Adicionar texto flutuante
         CreateDrinkText(drink, augment);
 
-        // Efeito visual opcional: fazer a bebida flutuar
-        //StartCoroutine(FloatDrink(drink));
+        //Efeito visual opcional: fazer a bebida flutuar
+        StartCoroutine(FloatDrink(drink));
     }
 
     private GameObject GetDrinkPrefabForIndex(int index)
@@ -262,7 +262,7 @@ public class AugmentManager : MonoBehaviour
                 drink.transform.position.z
             );
 
-            drink.transform.Rotate(0, 30 * Time.deltaTime, 0);
+            //drink.transform.Rotate(0, 30 * Time.deltaTime, 0);
 
             yield return null;
         }
