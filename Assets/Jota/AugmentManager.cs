@@ -369,14 +369,14 @@ public class AugmentManager : MonoBehaviour
     {
         // Criar objeto para o texto
         GameObject textObj = new GameObject("DrinkText");
-        textObj.transform.position = drink.transform.position + Vector3.up * 0.3f;
+        textObj.transform.position = drink.transform.position + Vector3.up * 0.5f;
         textObj.transform.SetParent(drink.transform);
 
         // Adicionar TextMesh
         TextMesh textMesh = textObj.AddComponent<TextMesh>();
         textMesh.text = augment.augmentName + "\n" + augment.description;
         textMesh.characterSize = 0.05f;
-        textMesh.fontSize = 10;
+        textMesh.fontSize = 8;
         textMesh.anchor = TextAnchor.MiddleCenter;
         textMesh.alignment = TextAlignment.Center;
         textMesh.color = GetColorByRarity(augment.rarity);
