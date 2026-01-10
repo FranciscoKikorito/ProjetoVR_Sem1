@@ -102,9 +102,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (augment.weaponPrefab != null)
         {
-            // Encontrar slot apropriado para a arma
-            Transform weaponSlot = null;
-
             // Voc� pode adaptar isso para seu sistema de armas
             if (weapons != null && weapons.Length > 0)
             {
@@ -114,13 +111,6 @@ public class Player : MonoBehaviour, IDamageable
 
             // Instantiate a nova arma
             GameObject newWeapon = Instantiate(augment.weaponPrefab, transform.position, Quaternion.identity);
-
-            // Configurar a arma (voc� pode precisar adaptar)
-            IWeapons weaponComponent = newWeapon.GetComponent<IWeapons>();
-            if (weaponComponent != null)
-            {
-                weaponComponent.ApplyBonusStat();
-            }
         }
     }
 
