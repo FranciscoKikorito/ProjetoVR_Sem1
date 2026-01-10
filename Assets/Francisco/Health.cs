@@ -6,13 +6,16 @@ public class Health : MonoBehaviour, IDamageable
     private Spawner spawner;
     private float maxHealth;
 
-    // ADD ↓↓↓
     private Animator animator;
+    private Rigidbody rb;
     private bool isDead = false;
+
+    [SerializeField] private float deathDelay = 3f;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Called by spawner when spawning
@@ -21,40 +24,55 @@ public class Health : MonoBehaviour, IDamageable
         maxHealth = healthValue;
         currentHealth = Mathf.RoundToInt(maxHealth);
         spawner = spawnerRef;
-        Debug.Log($"{gameObject.name} initialized with {currentHealth} health");
     }
 
     public void TakeDamage(int damage)
     {
-        if (isDead) return; // ADD
+        if (isDead) return;
 
         currentHealth -= damage;
-        Debug.Log($"{gameObject.name} took {damage} damage. Remaining: {currentHealth}");
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
+    /*
     private void Die()
     {
-        if (isDead) return; // ADD
+        if (isDead) return;
         isDead = true;
 
-        Debug.Log($"{gameObject.name} died!");
-
-        // ADD ↓↓↓ trigger animation
+        
         if (animator != null)
             animator.SetBool("IsDead", true);
 
-        // Notify the spawner
-        if (spawner != null)
+        // 🔒 Freeze Rigidbody position & rotation
+        if (rb != null)
         {
-            spawner.NotifyDeath();
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
         }
 
-        // CHANGE ↓↓↓ delay destroy
-        Destroy(gameObject, 3f); // match death animation length
+        StartCoroutine(DeathRoutine());
+    }
+
+    private System.Collections.IEnumerator DeathRoutine()
+    {
+        &&yield return new WaitForSeconds(deathDelay);
+
+        if (spawner != null)
+            spawner.NotifyDeath();
+
+        Destroy(gameObject);
+    }*/
+
+
+    private void Die()
+    {
+        if (spawner != null)
+            spawner.NotifyDeath();
+
+        Destroy(gameObject);
     }
 }

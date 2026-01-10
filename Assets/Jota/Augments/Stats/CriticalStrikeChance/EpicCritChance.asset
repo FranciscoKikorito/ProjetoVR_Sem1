@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: EpicCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: 51
-  description: +50% crit chance
+  description: +40% crit chance
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 4
-  statValue: 0.5
+  statValue: 0.4
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

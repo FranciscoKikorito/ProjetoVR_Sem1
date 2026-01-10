@@ -15,8 +15,8 @@ MonoBehaviour:
   augmentName: Rich man's Cognac
   description: +250 attack damage
   icon: {fileID: 0}
-  augmentType: 0
-  rarity: 0
+  augmentType: 1
+  rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 1

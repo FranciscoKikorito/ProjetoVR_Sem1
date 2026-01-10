@@ -15,7 +15,7 @@ MonoBehaviour:
   augmentName: Binks no Sake
   description: +100 attack damage
   icon: {fileID: 0}
-  augmentType: 0
+  augmentType: 1
   rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand

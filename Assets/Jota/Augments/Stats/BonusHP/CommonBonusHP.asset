@@ -15,14 +15,14 @@ MonoBehaviour:
   augmentName: Alcohol with water
   description: 'Live giving sources!
 
-    +10 bonus HP'
+    +25 bonus HP'
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 0
-  statValue: 10
+  statValue: 25
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

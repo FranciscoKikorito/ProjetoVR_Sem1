@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: EpicCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Pure Alcohol
-  description: +250% crit damage
+  description: +100% crit damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 5
-  statValue: 2.5
+  statValue: 1
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

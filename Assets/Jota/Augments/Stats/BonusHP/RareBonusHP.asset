@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RareBonusHP
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Almaza
-  description: 'Allahu Akbar!
+  description: 'Big Heals!
 
     +100 hp'
   icon: {fileID: 0}

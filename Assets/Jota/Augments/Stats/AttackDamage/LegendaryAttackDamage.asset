@@ -15,7 +15,7 @@ MonoBehaviour:
   augmentName: Your grandma's Liquor
   description: +500 attack damage
   icon: {fileID: 0}
-  augmentType: 0
+  augmentType: 1
   rarity: 4
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: UncommonCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Draught beer
-  description: +25% crit chance
+  description: +20% crit chance
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 4
-  statValue: 0.25
+  statValue: 0.2
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1
