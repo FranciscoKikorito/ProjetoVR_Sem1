@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: CommonArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Old Man's beer
-  description: 'That old beer that collects rust on the corner
-
-    +10 armor'
+  description: +10 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0

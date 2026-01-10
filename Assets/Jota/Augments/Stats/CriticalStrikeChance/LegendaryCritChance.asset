@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: LegendaryCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Light Vodka
-  description: 'Just to get the party started
-
-    +75% crit chance'
+  description: +75% crit chance
   icon: {fileID: 0}
   augmentType: 1
   rarity: 4

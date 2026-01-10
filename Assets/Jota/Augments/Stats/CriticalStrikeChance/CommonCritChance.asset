@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: CommonCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Hydromel
-  description: 'Raid some villages with your viking bros!
-
-    +15% Critical Chance '
+  description: '+15% Critical Chance '
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0

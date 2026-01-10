@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: RareAlcoholAmp
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Stella Artois
-  description: 'You''ll drink it and be happy
-
-    +35% alcohol amplification'
+  description: +35% alcohol amplification
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2

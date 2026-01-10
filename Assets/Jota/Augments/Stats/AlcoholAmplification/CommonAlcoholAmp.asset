@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: CommonAlcoholAmp
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Sangria
-  description: 'You''ll drink it and be happy
-
-    +5% alcohol amplification'
+  description: +5% alcohol amplification
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0

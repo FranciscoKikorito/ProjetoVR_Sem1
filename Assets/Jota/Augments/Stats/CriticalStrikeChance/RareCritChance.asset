@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: RareCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Caipirinha
-  description: 'Best party drink ever made!
-
-    +40% crit chance'
+  description: +40% crit chance
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2

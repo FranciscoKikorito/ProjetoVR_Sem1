@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: RareAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Binks no Sake
-  description: 'Yo-hohoho, Yo-hohoho!
-
-    +100 attack damage'
+  description: +100 attack damage
   icon: {fileID: 0}
   augmentType: 0
   rarity: 2

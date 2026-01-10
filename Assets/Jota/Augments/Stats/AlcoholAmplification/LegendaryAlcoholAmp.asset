@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: LegendaryAlcoholAmp
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Budweiser
-  description: 'Piss flavour, the best.
-
-    +175% alcohol Amplification'
+  description: +175% alcohol Amplification
   icon: {fileID: 0}
   augmentType: 1
   rarity: 4

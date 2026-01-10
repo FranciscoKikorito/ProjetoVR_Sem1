@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: EpicCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Pure Alcohol
-  description: 'Well, what about drinking poison?
-
-    +250% crit damage'
+  description: +250% crit damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3

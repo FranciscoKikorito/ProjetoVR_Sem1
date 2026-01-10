@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: UncommonArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Estrella Galicia
-  description: 'Tastes like almost portuguese
-
-    +50 armor'
+  description: +50 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1

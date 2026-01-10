@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: EpicWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Banana
-  description: 'Just get it and use it well
+  description: '+100 attack damage
 
-    +100 attack damage
-
-    Increases
-    your crit damage'
+    Increases your crit damage'
   icon: {fileID: 0}
   augmentType: 0
   rarity: 3

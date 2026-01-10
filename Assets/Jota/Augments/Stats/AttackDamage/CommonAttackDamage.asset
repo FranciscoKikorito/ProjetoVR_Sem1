@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: CommonAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: London dry gin
-  description: 'Not a big fan of
-
-    +10 atttack damage'
+  description: +10 atttack damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0

@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: CommonWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Baseball Bat
-  description: 'The most unpopular sport in europe
+  description: '+15 attack damage
 
-    +15 attack damage
-
-    increases
-    attack damage by a %'
+    increases attack damage by a %'
   icon: {fileID: 0}
   augmentType: 0
   rarity: 0

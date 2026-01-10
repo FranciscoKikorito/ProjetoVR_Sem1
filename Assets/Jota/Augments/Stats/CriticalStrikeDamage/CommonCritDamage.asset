@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: CommonCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: "Beir\xE3o's Liquor"
-  description: 'Already making me angry
-
-    +25% crit damage'
+  description: +25% crit damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0

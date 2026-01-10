@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: UncommonWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Brass Knuckles
-  description: 'Makes your punches hit even harder
+  description: '+35 attack damage
 
-    +35 attack damage
-
-    Increase
-    armor by a %'
+    Increase armor by a %'
   icon: {fileID: 0}
   augmentType: 0
   rarity: 1

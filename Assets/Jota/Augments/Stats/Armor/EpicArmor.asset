@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: EpicArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Super Bock
-  description: 'Is porto truly better than benfica?
-
-    +250 armor'
+  description: +250 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: EpicAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Rich man's Cognac
-  description: 'Tastes like rich!
-
-    +250 attack damage'
+  description: +250 attack damage
   icon: {fileID: 0}
   augmentType: 0
   rarity: 0

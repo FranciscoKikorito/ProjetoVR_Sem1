@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: EpicCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: 51
-  description: 'What about caipirinha, but pure?
-
-    +50% crit chance'
+  description: +50% crit chance
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3

@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: RareWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Tankard
-  description: 'The most handful thing in your current situation
+  description: '+50 attack damage
 
-    +50 attack
-    damage
-
-    Increases your alcohol amplification by a %'
+    Increases your alcohol amplification by a
+    %'
   icon: {fileID: 0}
   augmentType: 0
   rarity: 2

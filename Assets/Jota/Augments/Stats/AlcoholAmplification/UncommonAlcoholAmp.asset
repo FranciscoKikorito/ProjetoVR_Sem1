@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: UncommonAlcoholAmp
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Fiery Whisky
-  description: 'Just be careful to not become alcoholic ok?
-
-    +15% alcohol amplification'
+  description: +15% alcohol amplification
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1

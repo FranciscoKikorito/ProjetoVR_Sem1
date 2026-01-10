@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: LegendaryArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Aguardente
-  description: 'You can even feel the fire burning in your throat
-
-    +500 armor'
+  description: +500 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 4

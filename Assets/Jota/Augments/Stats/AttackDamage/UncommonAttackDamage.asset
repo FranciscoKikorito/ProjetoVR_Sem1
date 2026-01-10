@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: UncommonAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Genebra gin
-  description: 'Seems to taste good!
-
-    +50 attack damage'
+  description: +50 attack damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1

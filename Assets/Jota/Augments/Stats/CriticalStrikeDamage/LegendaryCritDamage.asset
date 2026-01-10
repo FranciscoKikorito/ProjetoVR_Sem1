@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: LegendaryCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Gasoline
-  description: 'The most mannish thing to drink ever concievable
-
-    +500% crit
-    damage'
+  description: +500% crit damage
   icon: {fileID: 0}
   augmentType: 0
   rarity: 0

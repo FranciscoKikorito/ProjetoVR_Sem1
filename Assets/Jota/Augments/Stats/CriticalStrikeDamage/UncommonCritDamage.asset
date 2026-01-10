@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: UncommonCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Absinthe
-  description: 'Alcoholic comatose? lets go!
-
-    +75% crit damage'
+  description: +75% crit damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0

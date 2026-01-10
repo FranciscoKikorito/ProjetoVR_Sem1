@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: UncommonCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Draught beer
-  description: 'Makes me want to punch
-
-    +25% crit chance'
+  description: +25% crit chance
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1

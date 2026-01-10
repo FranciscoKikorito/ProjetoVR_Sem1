@@ -218,7 +218,7 @@ public class AugmentManager : MonoBehaviour
         CreateDrinkText(drink, augment);
 
         //Efeito visual opcional: fazer a bebida flutuar
-        StartCoroutine(FloatDrink(drink));
+        //StartCoroutine(FloatDrink(drink));
     }
 
     private GameObject GetDrinkPrefabForIndex(int index)

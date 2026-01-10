@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: LegendaryAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Your grandma's Liquor
-  description: 'Be careful, too much alcohol here
-
-    +500 attack damage'
+  description: +500 attack damage
   icon: {fileID: 0}
   augmentType: 0
   rarity: 4

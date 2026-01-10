@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: RareArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Ancient pirate Rum
-  description: 'Ahoy!
-
-    +100 armor'
+  description: +100 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2

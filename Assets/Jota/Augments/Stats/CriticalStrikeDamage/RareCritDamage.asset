@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: RareCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Dmitri's Vodka
-  description: 'I promise that i won''t give him back
-
-    +125% crit damage'
+  description: +125% crit damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2
