@@ -41,6 +41,10 @@ public class AugmentManager : MonoBehaviour
     [Range(0f, 1f)]
     public float weaponChance = 0.5f;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource; // Audio source to play sounds
+    public AudioClip drinkSound;   // Sound to play when a drink is consumed
+
     private List<Augment> generatedChoices = new List<Augment>();
     private List<GameObject> currentDrinks = new List<GameObject>();
     private bool isSelectionActive = false;
@@ -269,6 +273,12 @@ public class AugmentManager : MonoBehaviour
         Augment selectedAugment = drinkScript.augment;
         Debug.Log("Augment selecionado: " + selectedAugment.augmentName);
 
+        // Play drink sound
+        if (audioSource != null && drinkSound != null)
+        {
+            audioSource.PlayOneShot(drinkSound);
+        }
+
         ShowAugmentOnScreen(selectedAugment);
 
         if (Player.instance != null)
@@ -337,7 +347,7 @@ public class AugmentManager : MonoBehaviour
     private void CreateDrinkText(GameObject drink, Augment augment)
     {
         GameObject textObj = new GameObject("DrinkText");
-        // Increase the vertical offset to 1.3f (0.3f + 1)
+        // Increase the vertical offset to 0.4f
         textObj.transform.position = drink.transform.position + Vector3.up * 0.4f;
         textObj.transform.SetParent(drink.transform);
 
