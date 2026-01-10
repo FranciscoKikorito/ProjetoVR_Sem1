@@ -12,6 +12,7 @@ public class Health : MonoBehaviour, IDamageable
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
     }
 
     // Called by spawner when spawning
