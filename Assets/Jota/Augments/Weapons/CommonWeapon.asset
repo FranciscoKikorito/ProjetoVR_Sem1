@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
+  m_Name: CommonWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::Augment
+  augmentName: Baseball Bat
+  description: '+15 attack damage
+
+    increases attack damage by a %'
+  icon: {fileID: 0}
+  augmentType: 0
+  rarity: 0
+  weaponPrefab: {fileID: 0}
+  weaponSlot: RightHand
+  statType: 1
+  statValue: 15
+  applyEffect: {fileID: 0}
+  applySound: {fileID: 0}
+  canStack: 0
+  maxStacks: 1
