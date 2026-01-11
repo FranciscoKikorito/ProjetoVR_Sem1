@@ -29,6 +29,12 @@ public class Player : MonoBehaviour, IDamageable
     public AudioClip[] hitSounds;
     public AudioSource hitAudioSource;
 
+    [Header("Weapon System")]
+    public WeaponManager weaponManager;
+    public Transform leftHand;  // Transform da mão esquerda
+    public Transform rightHand; // Transform da mão direita
+
+
     private void Awake()
     {
         if (instance == null)
@@ -46,7 +52,49 @@ public class Player : MonoBehaviour, IDamageable
         currentStats = Instantiate(playerBaseStats);
         currentHP = currentStats.health;
         enemyDamagePerHit = 25;
+
+        // Inicializar WeaponManager
+        InitializeWeaponManager();
     }
+
+    private void InitializeWeaponManager()
+    {
+        if (weaponManager == null)
+            weaponManager = GetComponent<WeaponManager>();
+
+        if (weaponManager == null)
+            weaponManager = gameObject.AddComponent<WeaponManager>();
+
+        // Configurar mãos
+        weaponManager.leftHand = leftHand;
+        weaponManager.rightHand = rightHand;
+    }
+
+    private void ApplyWeaponAugment(Augment augment)
+    {
+        if (augment.weaponPrefab != null)
+        {
+            // Equipar arma usando o WeaponManager
+            if (weaponManager != null)
+            {
+                weaponManager.EquipWeapon(augment.weaponPrefab, augment.weaponSlot);
+
+                // Atualizar dano base do jogador com o dano da arma
+                UpdatePlayerAttackDamage();
+            }
+        }
+    }
+
+    private void UpdatePlayerAttackDamage()
+    {
+        if (weaponManager != null)
+        {
+            // Adicionar dano das armas ao dano base do jogador
+            int weaponDamage = weaponManager.GetTotalWeaponDamage();
+            currentStats.attackDamage = weaponDamage;
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -95,22 +143,6 @@ public class Player : MonoBehaviour, IDamageable
             case StatType.CriticalDamage:
                 currentStats.critDamage += augment.statValue;
                 break;
-        }
-    }
-
-    private void ApplyWeaponAugment(Augment augment)
-    {
-        if (augment.weaponPrefab != null)
-        {
-            // Voc� pode adaptar isso para seu sistema de armas
-            if (weapons != null && weapons.Length > 0)
-            {
-                // Aqui voc� pode implementar l�gica para equipar a arma
-                // Por exemplo, substituir uma arma existente
-            }
-
-            // Instantiate a nova arma
-            GameObject newWeapon = Instantiate(augment.weaponPrefab, transform.position, Quaternion.identity);
         }
     }
 
@@ -179,11 +211,17 @@ public class Player : MonoBehaviour, IDamageable
     {
         float damage = baseDamage;
 
+        // Incluir dano das armas
+        if (weaponManager != null)
+        {
+            damage += weaponManager.GetTotalWeaponDamage();
+        }
+
         // Aplicar alcohol amplification
         damage *= currentStats.alcoholAmplification;
 
-        // Verificar cr�tico
-        bool isCrit = Random.value <= (currentStats.critChance * 100f);
+        // Verificar crítico
+        bool isCrit = Random.value <= currentStats.critChance;
 
         if (isCrit)
         {
