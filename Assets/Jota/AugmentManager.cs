@@ -39,7 +39,7 @@ public class AugmentManager : MonoBehaviour
     [Header("Selection Settings")]
     public int choicesPerWave = 3;
     [Range(0f, 1f)]
-    public float weaponChance = 0.25f;
+    public float weaponChance = 0.5f;
 
     [Header("Audio Settings")]
     public AudioSource audioSource; // Audio source to play sounds
@@ -342,41 +342,6 @@ public class AugmentManager : MonoBehaviour
                 Destroy(drink);
         }
         currentDrinks.Clear();
-    }
-
-    private void ApplyWeaponAugment(Augment augment)
-    {
-        if (augment.weaponPrefab != null)
-        {
-            // Equipar arma
-            if (Player.instance != null && Player.instance.weaponManager != null)
-            {
-                Player.instance.weaponManager.EquipWeapon(augment.weaponPrefab, augment.weaponSlot);
-            }
-
-            // Adicionar stats da arma ao jogador
-            AddWeaponStatsToPlayer(augment);
-        }
-    }
-
-    private void AddWeaponStatsToPlayer(Augment augment)
-    {
-        if (Player.instance == null) return;
-
-        // Obter componente Weapon do prefab
-        Weapon weaponComponent = augment.weaponPrefab.GetComponent<Weapon>();
-        if (weaponComponent != null)
-        {
-            // Adicionar dano da arma ao jogador
-            Player.instance.currentStats.attackDamage += weaponComponent.baseDamage;
-        }
-
-        // Adicionar outros bônus se especificado no augment
-        if (augment.statValue > 0)
-        {
-            // Se o augment de arma também tem statValue, aplicar
-            Player.instance.currentStats.attackDamage += (int)augment.statValue;
-        }
     }
 
     private void CreateDrinkText(GameObject drink, Augment augment)
