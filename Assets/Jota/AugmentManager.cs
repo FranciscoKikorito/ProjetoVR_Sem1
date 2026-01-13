@@ -239,11 +239,15 @@ public class AugmentManager : MonoBehaviour
             WeaponPickup weaponPickup = spawnedObject.AddComponent<WeaponPickup>();
             weaponPickup.augment = augment;
             weaponPickup.augmentManager = this;
+            weaponPickup.pickupDelay = 1.0f; // 1 segundo de delay
 
             // Configurar física para ser pego
             SetupWeaponForPickup(spawnedObject);
 
-            Debug.Log($"Arma spawnada: {augment.augmentName}");
+            // Adicionar componente para desativar collider temporariamente
+            StartCoroutine(DisableColliderTemporarily(spawnedObject, 0.5f));
+
+            Debug.Log($"Arma spawnada: {augment.augmentName} (pickup delay: 1s)");
         }
         else
         {
@@ -264,6 +268,17 @@ public class AugmentManager : MonoBehaviour
         {
             currentDrinks.Add(spawnedObject);
             CreateDrinkText(spawnedObject, augment);
+        }
+    }
+
+    private IEnumerator DisableColliderTemporarily(GameObject weapon, float delay)
+    {
+        Collider collider = weapon.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+            yield return new WaitForSeconds(delay);
+            collider.enabled = true;
         }
     }
 
@@ -326,6 +341,7 @@ public class AugmentManager : MonoBehaviour
         }
     }
 
+    // Método chamado quando uma arma é pega
     public void OnWeaponPickedUp(GameObject weapon, Augment augment)
     {
         Debug.Log("Arma pega: " + augment.augmentName);
@@ -352,11 +368,14 @@ public class AugmentManager : MonoBehaviour
         keptWeapons.Add(weapon);
 
         // Remover texto da arma
-        BillboardText text = weapon.GetComponentInChildren<BillboardText>();
-        if (text != null)
+        TextReference textRef = weapon.GetComponent<TextReference>();
+        if (textRef != null && textRef.assignedText != null)
         {
-            Destroy(text.gameObject);
+            Destroy(textRef.assignedText);
         }
+
+        // Remover componente TextReference também
+        Destroy(textRef);
 
         // Fechar seleção
         FinishSelection();
@@ -488,6 +507,12 @@ public class AugmentManager : MonoBehaviour
                 // Verificar se é bebida (tem SimpleDrink)
                 if (drink.GetComponent<SimpleDrink>() != null)
                 {
+                    // Destruir texto associado
+                    TextReference textRef = drink.GetComponent<TextReference>();
+                    if (textRef != null && textRef.assignedText != null)
+                    {
+                        Destroy(textRef.assignedText);
+                    }
                     Destroy(drink);
                 }
                 // Armas sem SimpleDrink ficam no jogo
@@ -558,21 +583,37 @@ public class AugmentManager : MonoBehaviour
     private void CreateDrinkText(GameObject drink, Augment augment)
     {
         GameObject textObj = new GameObject("DrinkText");
+
+        // Posicionar acima do objeto, MAS NÃO como filho
         textObj.transform.position = drink.transform.position + Vector3.up * 0.4f;
-        textObj.transform.SetParent(drink.transform);
 
         TextMeshPro textMesh = textObj.AddComponent<TextMeshPro>();
         textMesh.text = augment.augmentName + "\n" + augment.description;
         textMesh.fontSize = 2f;
         textMesh.alignment = TextAlignmentOptions.Center;
         textMesh.color = GetColorByRarity(augment.rarity);
-        textMesh.enableWordWrapping = true;
+        textMesh.textWrappingMode = TextWrappingModes.Normal;
         textMesh.enableAutoSizing = false;
-        textMesh.rectTransform.localScale = Vector3.one;
+        textMesh.rectTransform.localScale = Vector3.one; // Garantir scale 1
+
+        // Tamanho fixo para o texto
         textMesh.rectTransform.sizeDelta = new Vector2(3, 1);
 
+        // Adicionar componente para seguir a arma/bebida sem herdar scale
+        TextFollower textFollower = textObj.AddComponent<TextFollower>();
+        textFollower.target = drink.transform;
+        textFollower.verticalOffset = 0.4f;
+
+        // Billboard para olhar para jogador
         BillboardText billboard = textObj.AddComponent<BillboardText>();
         billboard.target = playerHead;
+
+        // Guardar referência para poder destruir depois
+        if (drink.GetComponent<TextReference>() == null)
+        {
+            TextReference textRef = drink.AddComponent<TextReference>();
+            textRef.assignedText = textObj;
+        }
     }
 
     public void SelectAugment(Augment selectedAugment)
