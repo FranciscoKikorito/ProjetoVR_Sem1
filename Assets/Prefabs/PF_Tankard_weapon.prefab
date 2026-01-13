@@ -1605,9 +1605,8 @@ GameObject:
   - component: {fileID: 1211785933262552718}
   - component: {fileID: 3933740103706457792}
   - component: {fileID: 5291265664518444091}
-  - component: {fileID: 2073745520944613232}
   m_Layer: 0
-  m_Name: PF_Tankard 1
+  m_Name: PF_Tankard_weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1884,18 +1883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cb0a0cb13965347b765a3a9356dd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.InteractableTriggerBroadcaster
---- !u!114 &2073745520944613232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5672080421803237212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9af15ed25d26ef47986d4ab8ea751fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TankardWeapon
 --- !u!1 &5736349153789981807
 GameObject:
   m_ObjectHideFlags: 0

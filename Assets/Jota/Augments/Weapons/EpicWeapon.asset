@@ -19,7 +19,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   augmentType: 0
   rarity: 3
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 779594456932670766, guid: 0f4acf40370b1b24ebe4c41d5fbcb0b7, type: 3}
   weaponSlot: RightHand
   statType: 1
   statValue: 100

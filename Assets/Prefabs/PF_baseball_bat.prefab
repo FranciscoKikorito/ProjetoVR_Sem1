@@ -1131,22 +1131,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2572448316486292573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 270431f3c0b2b634192212bd2c2a0137, type: 3}
+  m_Script: {fileID: 11500000, guid: ec6e74ccf707d8a48827ccb41a7fe57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  baseDamage: 30
-  damageMultiplier: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  hitCooldown: 0
-  hitSounds: []
-  audioSource: {fileID: 8667911209791499040}
-  hitEffects: []
-  effectDestroyTime: 2
-  velocityThreshold: 1.5
-  weaponCollider: {fileID: 8814677466282069183}
-  damage: 30
+  damageMultiplier: 2
 --- !u!54 &5046209416953119243
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1207,33 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6e74ccf707d8a48827ccb41a7fe57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseballBatWeapon
-  baseDamage: 30
   damageMultiplier: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  hitCooldown: 0.5
-  hitSounds: []
-  audioSource: {fileID: 0}
-  hitEffects: []
-  effectDestroyTime: 2
-  velocityThreshold: 1.5
-  weaponCollider: {fileID: 8814677466282069183}
-  damage: 0
-  weaponName: 
-  baseDamage: 0
-  attackSpeed: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  hitSounds: []
-  audioSource: {fileID: 8667911209791499040}
-  hitEffects: []
-  effectDestroyTime: 2
-  velocityThreshold: 1.5
-  hitCooldown: 0.3
-  damageMultiplier: 2
-  swingForce: 2
 --- !u!114 &8874196257177044565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,8 +1472,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2791685066490303949}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.0000000065192567, w: 1}
-  m_LocalPosition: {x: -2.6900931e-10, y: -0.0000000050699707, z: -0.0000000108114495}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0000000074505797, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 0.9999998}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1660,8 +1622,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2816739245355116363}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000007450579, y: 0.000000037252896, z: 0.00000005960463, w: 1}
-  m_LocalPosition: {x: 0.000000014616191, y: 0.0000000035109475, z: 0.0000000037421453}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0000000018626451, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999996, y: 0.9999996, z: 0.9999996}
   m_ConstrainProportionsScale: 0
   m_Children:

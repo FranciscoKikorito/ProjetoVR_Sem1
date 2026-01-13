@@ -2703,33 +2703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6e47a5fca6211479ec749cf8b01721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrassKnucklesWeapon
-  baseDamage: 30
-  damageMultiplier: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  hitCooldown: 0.5
-  hitSounds: []
-  audioSource: {fileID: 0}
-  hitEffects: []
-  effectDestroyTime: 2
-  velocityThreshold: 1.5
-  weaponCollider: {fileID: 2547888060759037872}
-  damage: 0
-  weaponName: 
-  baseDamage: 0
-  attackSpeed: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  hitSounds: []
-  audioSource: {fileID: 5688279004429768548}
-  hitEffects: []
-  effectDestroyTime: 2
-  velocityThreshold: 1.5
-  hitCooldown: 0.2
   armorBonus: 20
-  attackSpeedBonus: 0.2
 --- !u!135 &2547888060759037872
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -429,8 +429,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455069768534728336}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000014901158, y: 0.000000029802315, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000000055384417, y: 0.000000036587252, z: -0.00000001075462}
+  m_LocalRotation: {x: -0, y: 0.000000029802312, z: -0.000000014901156, w: 1}
+  m_LocalPosition: {x: 0.0000000033389194, y: 0.000000014390532, z: 0.000000003868928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2109,34 +2109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385d16b3c0a1db34c94fc63d4d824726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BananaWeapon
-  baseDamage: 30
-  damageMultiplier: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  hitCooldown: 0.5
-  hitSounds: []
-  audioSource: {fileID: 0}
-  hitEffects: []
-  effectDestroyTime: 2
-  velocityThreshold: 1.5
-  weaponCollider: {fileID: 163066951729439605}
-  damage: 0
-  weaponName: Super Banana
-  baseDamage: 0
-  attackSpeed: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  hitSounds: []
-  audioSource: {fileID: 7574146315400350691}
-  hitEffects: []
-  effectDestroyTime: 2
-  velocityThreshold: 1.5
-  hitCooldown: 0.3
   isSuperBanana: 1
   critDamageBoost: 5
-  superCritDamageBoost: 5
 --- !u!114 &2437737502948273660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2853,8 +2827,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854740851889872632}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000018626443, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000000011156691, y: 0.00000002475031, z: -0.00000004662514}
+  m_LocalRotation: {x: -0.000000029802315, y: 0.000000029802315, z: 0.000000007450579, w: 1}
+  m_LocalPosition: {x: 0.0000000023174431, y: -0.0000000047710267, z: 0.0000000010581749}
   m_LocalScale: {x: 0.99999964, y: 0.99999964, z: 0.99999964}
   m_ConstrainProportionsScale: 0
   m_Children:
