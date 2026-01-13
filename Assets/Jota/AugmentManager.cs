@@ -278,8 +278,8 @@ public class AugmentManager : MonoBehaviour
             rb = weapon.AddComponent<Rigidbody>();
         }
 
-        rb.isKinematic = false;
-        rb.useGravity = true;
+        rb.isKinematic = true;
+        rb.useGravity = false;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
         // Garantir que tem collider
