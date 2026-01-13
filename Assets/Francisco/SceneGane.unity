@@ -29152,7 +29152,7 @@ GameObject:
   - component: {fileID: 1889011173}
   - component: {fileID: 1889011172}
   m_Layer: 0
-  m_Name: Tutorial/Start
+  m_Name: TutorialStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29177,6 +29177,7 @@ MonoBehaviour:
   WaveManager360: {fileID: 1178931524}
   playerHead: {fileID: 967556210}
   drinkDistance: 0.4
+  TutorialStart: {fileID: 1889011171}
 --- !u!4 &1889011173
 Transform:
   m_ObjectHideFlags: 0
