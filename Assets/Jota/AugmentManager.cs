@@ -174,6 +174,10 @@ public class AugmentManager : MonoBehaviour
         return selectedPool[Random.Range(0, selectedPool.Count)];
     }
 
+    // =============================
+    // UPDATED SPAWN LOGIC ONLY
+    // =============================
+
     private void SpawnDrinks()
     {
         ClearCurrentDrinks();
@@ -184,15 +188,35 @@ public class AugmentManager : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < Mathf.Min(drinksPerWave, drinkSpawnPoints.Length, generatedChoices.Count); i++)
+        // Shuffle spawn points each wave
+        List<Transform> shuffledPoints = new List<Transform>(drinkSpawnPoints);
+        for (int i = 0; i < shuffledPoints.Count; i++)
         {
-            SpawnSingleDrink(drinkSpawnPoints[i], generatedChoices[i], i);
+            Transform temp = shuffledPoints[i];
+            int rnd = Random.Range(i, shuffledPoints.Count);
+            shuffledPoints[i] = shuffledPoints[rnd];
+            shuffledPoints[rnd] = temp;
+        }
+
+        // Copy prefabs list so we can remove used ones
+        List<GameObject> availablePrefabs = new List<GameObject>(drinkPrefabs);
+
+        int spawnCount = Mathf.Min(drinksPerWave, shuffledPoints.Count, generatedChoices.Count);
+
+        for (int i = 0; i < spawnCount; i++)
+        {
+            if (availablePrefabs.Count == 0) break;
+
+            int prefabIndex = Random.Range(0, availablePrefabs.Count);
+            GameObject chosenPrefab = availablePrefabs[prefabIndex];
+            availablePrefabs.RemoveAt(prefabIndex); // Prevent reuse this wave
+
+            SpawnSingleDrink(shuffledPoints[i], generatedChoices[i], chosenPrefab);
         }
     }
 
-    private void SpawnSingleDrink(Transform spawnPoint, Augment augment, int drinkIndex)
+    private void SpawnSingleDrink(Transform spawnPoint, Augment augment, GameObject drinkPrefab)
     {
-        GameObject drinkPrefab = GetDrinkPrefabForIndex(drinkIndex);
         if (drinkPrefab == null || augment == null) return;
 
         GameObject drink = Instantiate(drinkPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -201,20 +225,13 @@ public class AugmentManager : MonoBehaviour
         SimpleDrink drinkScript = drink.GetComponent<SimpleDrink>();
         if (drinkScript == null)
             drinkScript = drink.AddComponent<SimpleDrink>();
+
         drinkScript.augment = augment;
 
         CreateDrinkText(drink, augment);
     }
 
-    private GameObject GetDrinkPrefabForIndex(int index)
-    {
-        if (drinkPrefabs == null || drinkPrefabs.Length == 0)
-        {
-            Debug.LogError("Nenhum prefab de bebida configurado!");
-            return null;
-        }
-        return drinkPrefabs[index % drinkPrefabs.Length];
-    }
+    // =============================
 
     private Color GetColorByRarity(Rarity rarity)
     {
@@ -226,25 +243,6 @@ public class AugmentManager : MonoBehaviour
             case Rarity.Epic: return Color.magenta;
             case Rarity.Legendary: return Color.yellow;
             default: return Color.white;
-        }
-    }
-
-    private IEnumerator FloatDrink(GameObject drink)
-    {
-        Vector3 startPos = drink.transform.position;
-        float floatSpeed = 1f;
-        float floatHeight = 0.1f;
-
-        while (drink != null && isSelectionActive)
-        {
-            float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatHeight;
-            drink.transform.position = new Vector3(
-                drink.transform.position.x,
-                newY,
-                drink.transform.position.z
-            );
-
-            yield return null;
         }
     }
 
@@ -273,7 +271,6 @@ public class AugmentManager : MonoBehaviour
         Augment selectedAugment = drinkScript.augment;
         Debug.Log("Augment selecionado: " + selectedAugment.augmentName);
 
-        // Play drink sound
         if (audioSource != null && drinkSound != null)
         {
             audioSource.PlayOneShot(drinkSound);
@@ -347,11 +344,9 @@ public class AugmentManager : MonoBehaviour
     private void CreateDrinkText(GameObject drink, Augment augment)
     {
         GameObject textObj = new GameObject("DrinkText");
-        // Increase the vertical offset to 0.4f
         textObj.transform.position = drink.transform.position + Vector3.up * 0.4f;
         textObj.transform.SetParent(drink.transform);
 
-        // Add TextMeshPro in World Space
         TextMeshPro textMesh = textObj.AddComponent<TextMeshPro>();
         textMesh.text = augment.augmentName + "\n" + augment.description;
         textMesh.fontSize = 2f;
@@ -359,16 +354,12 @@ public class AugmentManager : MonoBehaviour
         textMesh.color = GetColorByRarity(augment.rarity);
         textMesh.enableWordWrapping = true;
         textMesh.enableAutoSizing = false;
-
-        // Scale 10x bigger
         textMesh.rectTransform.localScale = Vector3.one;
         textMesh.rectTransform.sizeDelta = new Vector2(3, 1);
 
-        // Always face the player
         BillboardText billboard = textObj.AddComponent<BillboardText>();
         billboard.target = playerHead;
     }
-
 
     public void SelectAugment(Augment selectedAugment)
     {
@@ -402,7 +393,7 @@ public class BillboardText : MonoBehaviour
         if (target == null) return;
 
         Vector3 lookDirection = transform.position - target.position;
-        lookDirection.y = 0; // mantém o texto nivelado
+        lookDirection.y = 0;
         if (lookDirection.sqrMagnitude > 0.001f)
             transform.rotation = Quaternion.LookRotation(lookDirection);
     }
