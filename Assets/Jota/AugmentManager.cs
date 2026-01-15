@@ -589,7 +589,7 @@ public class AugmentManager : MonoBehaviour
 
         TextMeshPro textMesh = textObj.AddComponent<TextMeshPro>();
         textMesh.text = augment.augmentName + "\n" + augment.description;
-        textMesh.fontSize = 1f;
+        textMesh.fontSize = 2f;
         textMesh.alignment = TextAlignmentOptions.Center;
         textMesh.color = GetColorByRarity(augment.rarity);
         textMesh.textWrappingMode = TextWrappingModes.Normal;
