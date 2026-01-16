@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class SimpleDrink : MonoBehaviour
+public class SimpleWeapon : MonoBehaviour
 {
-    public Augment augment;
-
     void Update()
     {
         transform.Rotate(0, 30 * Time.deltaTime, 0);
