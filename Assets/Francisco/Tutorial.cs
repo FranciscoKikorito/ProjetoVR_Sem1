@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -10,11 +11,11 @@ public class Tutorial : MonoBehaviour
     public Transform spawnPoint360;
 
     [Header("Drink Prefabs")]
-    public GameObject drinkPrefab; // only 1 prefab needed
+    public GameObject drinkPrefab;
 
     [Header("Wave Managers")]
-    public GameObject WaveManager;      // for normal drink
-    public GameObject WaveManager360;   // for 360 mode drink
+    public GameObject WaveManager;
+    public GameObject WaveManager360;
 
     [Header("Player Head")]
     public Transform playerHead;
@@ -23,12 +24,17 @@ public class Tutorial : MonoBehaviour
     public float drinkDistance = 0.4f;
 
     [Header("Tutorial Object")]
-    public GameObject TutorialStart; // deactivate after drinking
+    public GameObject TutorialStart;
 
-    // Store spawned drinks
+    [Header("Scene Settings")]
+    public string sceneToLoad360;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip drinkSound1;
+    public AudioClip drinkSound2;
+
     private List<GameObject> currentDrinks = new List<GameObject>();
-
-    // Store created text objects for billboard update
     private List<Transform> billboardTexts = new List<Transform>();
 
     private void Start()
@@ -49,7 +55,6 @@ public class Tutorial : MonoBehaviour
     {
         if (drinkPrefab == null) return;
 
-        // Spawn Normal drink
         if (spawnPointNormal != null)
         {
             GameObject drinkNormal = Instantiate(drinkPrefab, spawnPointNormal.position, spawnPointNormal.rotation);
@@ -59,7 +64,6 @@ public class Tutorial : MonoBehaviour
             CreateDrinkText(drinkNormal, "Start");
         }
 
-        // Spawn 360 Mode drink
         if (spawnPoint360 != null)
         {
             GameObject drink360 = Instantiate(drinkPrefab, spawnPoint360.position, spawnPoint360.rotation);
@@ -137,38 +141,42 @@ public class Tutorial : MonoBehaviour
         TutorialDrink td = drink.GetComponent<TutorialDrink>();
         if (td == null) return;
 
-        // Activate correct wave manager
         if (td.drinkType == TutorialDrink.DrinkType.Normal)
         {
             if (WaveManager != null) WaveManager.SetActive(true);
-            Debug.Log("Normal drink consumed → WaveManager activated!");
+
+            if (audioSource != null && (drinkSound1 != null || drinkSound2 != null))
+            {
+                AudioClip clipToPlay = Random.value < 0.5f ? drinkSound1 : drinkSound2;
+                if (clipToPlay != null)
+                    audioSource.PlayOneShot(clipToPlay);
+            }
         }
         else if (td.drinkType == TutorialDrink.DrinkType.Mode360)
         {
-            if (WaveManager360 != null) WaveManager360.SetActive(true);
-            Debug.Log("360 Mode drink consumed → WaveManager360 activated!");
+            if (!string.IsNullOrEmpty(sceneToLoad360))
+            {
+                SceneManager.LoadScene(sceneToLoad360);
+            }
+            else if (WaveManager360 != null)
+            {
+                WaveManager360.SetActive(true);
+            }
         }
 
-        // Deactivate tutorial start
         if (TutorialStart != null)
-        {
             TutorialStart.SetActive(false);
-            Debug.Log("TutorialStart deactivated!");
-        }
 
-        // Destroy all remaining drinks, including the one consumed
         foreach (GameObject d in currentDrinks)
         {
             if (d != null)
                 Destroy(d);
         }
 
-        // Clear the list
         currentDrinks.Clear();
     }
 }
 
-// Tiny component to track which type of drink it is
 public class TutorialDrink : MonoBehaviour
 {
     public enum DrinkType

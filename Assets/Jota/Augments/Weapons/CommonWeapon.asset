@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: CommonWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Baseball Bat
-  description: '+15 attack damage
-
-    increases attack damage'
+  description: '1.5x Current Damage '
   icon: {fileID: 0}
   augmentType: 0
   rarity: 0

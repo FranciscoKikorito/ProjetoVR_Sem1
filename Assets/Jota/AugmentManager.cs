@@ -18,19 +18,19 @@ public class AugmentManager : MonoBehaviour
 
     [Header("References")]
     public Spawner waveSpawner;
-    public Transform playerHead; // Arraste a câmera principal aqui
+    public Transform playerHead;
 
     [Header("Drink Settings")]
     public int drinksPerWave = 3;
     public float drinkDistance = 0.4f;
-    public Transform[] drinkSpawnPoints; // Pontos no balcão onde bebidas spawnam
+    public Transform[] drinkSpawnPoints;
 
     [Header("Drink prefabs")]
-    public GameObject[] drinkPrefabs; // Vários modelos de copo/bebida
+    public GameObject[] drinkPrefabs;
 
     [Header("HUD Display")]
-    public TextMeshProUGUI augmentDisplayText; // Texto na tela do jogador
-    public float displayDuration = 3f; // Tempo que o texto fica visível
+    public TextMeshProUGUI augmentDisplayText;
+    public float displayDuration = 3f;
 
     [Header("Augment Pools")]
     public AugmentPool statAugments;
@@ -42,16 +42,17 @@ public class AugmentManager : MonoBehaviour
     public float weaponChance = 0.5f;
 
     [Header("Audio Settings")]
-    public AudioSource audioSource; // Audio source to play sounds
-    public AudioClip drinkSound;   // Sound to play when a drink is consumed
+    public AudioSource audioSource;
+    public AudioClip drinkSound;
+    public AudioClip drinkSound2;
 
     private List<Augment> generatedChoices = new List<Augment>();
     private List<GameObject> currentDrinks = new List<GameObject>();
-    private List<GameObject> keptWeapons = new List<GameObject>(); // Armas que NÃO devem ser destruídas
+    private List<GameObject> keptWeapons = new List<GameObject>();
     private bool isSelectionActive = false;
 
-    private int pickedWeapons = 0; // Tracks how many weapons the player picked
-    private int maxPlayerWeapons = 2; // Max weapons the player can have
+    private int pickedWeapons = 0;
+    private int maxPlayerWeapons = 2;
 
 
     private void Start()
@@ -87,13 +88,12 @@ public class AugmentManager : MonoBehaviour
         generatedChoices.Clear();
 
         int weaponCountThisWave = 0;
-        int maxWeaponsThisWave = 1; // Only 1 weapon per wave
+        int maxWeaponsThisWave = 1; // 1 weapon per wave
 
         for (int i = 0; i < choicesPerWave; i++)
         {
             Augment newAugment;
 
-            // Only allow a weapon if player picked less than maxPlayerWeapons
             bool canSpawnWeapon = (pickedWeapons < maxPlayerWeapons) && (weaponCountThisWave < maxWeaponsThisWave);
             bool chooseWeapon = canSpawnWeapon && Random.value < weaponChance;
 
@@ -107,7 +107,6 @@ public class AugmentManager : MonoBehaviour
                 newAugment = GetRandomAugmentFromPool(statAugments);
             }
 
-            // Skip duplicates if augment can't stack
             if (Player.instance != null && !newAugment.canStack)
             {
                 bool alreadyHas = false;
@@ -122,7 +121,7 @@ public class AugmentManager : MonoBehaviour
 
                 if (alreadyHas)
                 {
-                    i--; // Retry this slot
+                    i--;
                     continue;
                 }
             }
@@ -185,9 +184,6 @@ public class AugmentManager : MonoBehaviour
         return selectedPool[Random.Range(0, selectedPool.Count)];
     }
 
-    // =============================
-    // UPDATED SPAWN LOGIC ONLY
-    // =============================
 
     private void SpawnDrinks()
     {
@@ -199,7 +195,6 @@ public class AugmentManager : MonoBehaviour
             return;
         }
 
-        // Shuffle spawn points each wave
         List<Transform> shuffledPoints = new List<Transform>(drinkSpawnPoints);
         for (int i = 0; i < shuffledPoints.Count; i++)
         {
@@ -209,7 +204,6 @@ public class AugmentManager : MonoBehaviour
             shuffledPoints[rnd] = temp;
         }
 
-        // Copy prefabs list so we can remove used ones
         List<GameObject> availablePrefabs = new List<GameObject>(drinkPrefabs);
 
         int spawnCount = Mathf.Min(drinksPerWave, shuffledPoints.Count, generatedChoices.Count);
@@ -234,26 +228,18 @@ public class AugmentManager : MonoBehaviour
 
         if (augment.augmentType == AugmentType.Weapon && augment.weaponPrefab != null)
         {
-            // Spawnar arma usando o prefab do augment
             spawnedObject = Instantiate(augment.weaponPrefab, spawnPoint.position, spawnPoint.rotation);
 
-            // Adicionar script de pickup para arma
             WeaponPickup weaponPickup = spawnedObject.AddComponent<WeaponPickup>();
             weaponPickup.augment = augment;
             weaponPickup.augmentManager = this;
-            weaponPickup.pickupDelay = 1.0f; // 1 segundo de delay
+            weaponPickup.pickupDelay = 1.0f;
 
-            // Configurar física para ser pego
             SetupWeaponForPickup(spawnedObject);
-
-            // Adicionar componente para desativar collider temporariamente
             StartCoroutine(DisableColliderTemporarily(spawnedObject, 0.5f));
-
-            Debug.Log($"Arma spawnada: {augment.augmentName} (pickup delay: 1s)");
         }
         else
         {
-            // Spawnar bebida normal
             if (drinkPrefab != null)
             {
                 spawnedObject = Instantiate(drinkPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -273,6 +259,7 @@ public class AugmentManager : MonoBehaviour
         }
     }
 
+
     private IEnumerator DisableColliderTemporarily(GameObject weapon, float delay)
     {
         Collider collider = weapon.GetComponent<Collider>();
@@ -284,11 +271,9 @@ public class AugmentManager : MonoBehaviour
         }
     }
 
-    // =============================
 
     private void SetupWeaponForPickup(GameObject weapon)
     {
-        // Garantir que tem Rigidbody
         Rigidbody rb = weapon.GetComponent<Rigidbody>();
         if (rb == null)
         {
@@ -299,7 +284,6 @@ public class AugmentManager : MonoBehaviour
         rb.useGravity = false;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
-        // Garantir que tem collider
         Collider collider = weapon.GetComponent<Collider>();
         if (collider == null)
         {
@@ -327,7 +311,6 @@ public class AugmentManager : MonoBehaviour
             GameObject drink = currentDrinks[i];
             if (drink == null) continue;
 
-            // Verificar se é bebida (tem SimpleDrink) e está perto da cabeça
             SimpleDrink drinkScript = drink.GetComponent<SimpleDrink>();
             if (drinkScript != null)
             {
@@ -339,29 +322,17 @@ public class AugmentManager : MonoBehaviour
                     break;
                 }
             }
-            // Armas são pegas pelo WeaponPickup script, não por distância
         }
     }
 
-    // Método chamado quando uma arma é pega
     public void OnWeaponPickedUp(GameObject weapon, Augment augment)
     {
-        Debug.Log("Arma pega: " + augment.augmentName);
-
-        pickedWeapons++; // <- Track picked weapons
-
-        if (audioSource != null && drinkSound != null)
-        {
-            audioSource.PlayOneShot(drinkSound);
-        }
-
+        pickedWeapons++;
         ShowAugmentOnScreen(augment);
 
         if (Player.instance != null)
         {
             Player.instance.ApplyAugment(augment);
-
-            // Aplicar efeito específico da arma
             ApplyWeaponEffect(weapon, augment);
         }
 
@@ -380,91 +351,42 @@ public class AugmentManager : MonoBehaviour
     }
 
 
+
     private void ApplyWeaponEffect(GameObject weapon, Augment augment)
     {
-        // Adicionar script HandPunch para detectar dano
-        HandPunch weaponHandPunch = weapon.AddComponent<HandPunch>();
-        weaponHandPunch.player = Player.instance;
-        weaponHandPunch.enemyLayer = LayerMask.GetMask("Enemy");
-
-        // Copiar configurações de áudio e VFX das mãos para a arma
-        CopyHandPunchSettings(weaponHandPunch);
-
-        // Adicionar script específico da arma baseado no nome
         string weaponName = augment.augmentName.ToLower();
 
         if (weaponName.Contains("baseball") || weaponName.Contains("bat"))
         {
             BaseballBatWeapon batScript = weapon.AddComponent<BaseballBatWeapon>();
-            batScript.damageMultiplier = 2f;
+            batScript.damageMultiplier = 1.5f;
+            if (Player.instance != null)
+            {
+                Player.instance.currentStats.attackDamage =
+                    Mathf.RoundToInt(Player.instance.currentStats.attackDamage * batScript.damageMultiplier);
+            }
         }
         else if (weaponName.Contains("banana"))
         {
             BananaWeapon bananaScript = weapon.AddComponent<BananaWeapon>();
             bananaScript.isSuperBanana = augment.rarity == Rarity.Legendary;
-            bananaScript.critDamageBoost = bananaScript.isSuperBanana ? 5f : 1f;
-        }
-        else if (weaponName.Contains("tankard") || weaponName.Contains("caneca"))
-        {
-            TankardWeapon tankardScript = weapon.AddComponent<TankardWeapon>();
+            bananaScript.critDamageBoost = bananaScript.isSuperBanana ? 2f : 1f;
+            if (Player.instance != null)
+            {
+                Player.instance.currentStats.critDamage += bananaScript.critDamageBoost;
+            }
         }
         else if (weaponName.Contains("brass") || weaponName.Contains("knuckles"))
         {
             BrassKnucklesWeapon knucklesScript = weapon.AddComponent<BrassKnucklesWeapon>();
-            knucklesScript.armorBonus = 20;
-        }
-
-        Debug.Log($"Efeito da arma {augment.augmentName} aplicado!");
-    }
-
-    private void CopyHandPunchSettings(HandPunch weaponHandPunch)
-    {
-        // Buscar automaticamente os HandPunch das mãos
-        HandPunch[] allHandPunches = FindObjectsOfType<HandPunch>();
-        HandPunch referenceHandPunch = null;
-
-        foreach (HandPunch hp in allHandPunches)
-        {
-            // Encontrar um HandPunch que não seja de uma arma (assume que está nas mãos do jogador)
-            if (hp.gameObject != weaponHandPunch.gameObject && hp.player != null)
+            knucklesScript.armorBonus = 100;
+            if (Player.instance != null)
             {
-                referenceHandPunch = hp;
-                break;
+                Player.instance.currentStats.armor += knucklesScript.armorBonus;
             }
         }
 
-        if (referenceHandPunch == null)
-        {
-            Debug.LogWarning("Não foi encontrado HandPunch das mãos para copiar configurações!");
-            return;
-        }
-
-        // Copiar configurações de áudio
-        weaponHandPunch.hitSounds = referenceHandPunch.hitSounds;
-        weaponHandPunch.volume = referenceHandPunch.volume;
-
-        // Garantir AudioSource
-        AudioSource weaponAudioSource = weaponHandPunch.gameObject.GetComponent<AudioSource>();
-        if (weaponAudioSource == null)
-        {
-            weaponAudioSource = weaponHandPunch.gameObject.AddComponent<AudioSource>();
-        }
-
-        // Configurar AudioSource
-        weaponAudioSource.spatialBlend = 1f;
-        weaponAudioSource.maxDistance = 10f;
-        weaponAudioSource.minDistance = 0.5f;
-
-        weaponHandPunch.hitAudioSource = weaponAudioSource;
-
-        // Copiar VFX
-        weaponHandPunch.hitVFXPrefabs = referenceHandPunch.hitVFXPrefabs;
-        weaponHandPunch.destroyVFXAfter = referenceHandPunch.destroyVFXAfter;
-
-        // Copiar outras configurações
-        weaponHandPunch.punchVelocityThreshold = referenceHandPunch.punchVelocityThreshold;
-
-        Debug.Log($"Configurações de HandPunch copiadas de {referenceHandPunch.gameObject.name}");
+        Debug.Log($"Efeito da arma {augment.augmentName} aplicado!");
     }
 
     private void DrinkSelected(GameObject drink)
@@ -475,10 +397,12 @@ public class AugmentManager : MonoBehaviour
         Augment selectedAugment = drinkScript.augment;
         Debug.Log("Augment selecionado: " + selectedAugment.augmentName);
 
-        if (audioSource != null && drinkSound != null)
+        if (audioSource != null)
         {
-            audioSource.PlayOneShot(drinkSound);
+            AudioClip clipToPlay = Random.value < 0.5f ? drinkSound : drinkSound2;
+            audioSource.PlayOneShot(clipToPlay);
         }
+
 
         ShowAugmentOnScreen(selectedAugment);
 
@@ -498,15 +422,12 @@ public class AugmentManager : MonoBehaviour
 
     private void FinishSelection()
     {
-        // Destruir apenas bebidas, manter armas
         foreach (GameObject drink in currentDrinks)
         {
             if (drink != null)
             {
-                // Verificar se é bebida (tem SimpleDrink)
                 if (drink.GetComponent<SimpleDrink>() != null)
                 {
-                    // Destruir texto associado
                     TextReference textRef = drink.GetComponent<TextReference>();
                     if (textRef != null && textRef.assignedText != null)
                     {
@@ -514,7 +435,6 @@ public class AugmentManager : MonoBehaviour
                     }
                     Destroy(drink);
                 }
-                // Armas sem SimpleDrink ficam no jogo
             }
         }
 
@@ -570,7 +490,6 @@ public class AugmentManager : MonoBehaviour
     {
         foreach (GameObject drink in currentDrinks)
         {
-            // Não destruir armas mantidas
             if (drink != null && !keptWeapons.Contains(drink))
             {
                 Destroy(drink);
@@ -583,7 +502,6 @@ public class AugmentManager : MonoBehaviour
     {
         GameObject textObj = new GameObject("DrinkText");
 
-        // Posicionar acima do objeto, MAS NÃO como filho
         textObj.transform.position = drink.transform.position + Vector3.up * 0.4f;
 
         TextMeshPro textMesh = textObj.AddComponent<TextMeshPro>();
@@ -598,16 +516,13 @@ public class AugmentManager : MonoBehaviour
         // Tamanho fixo para o texto
         textMesh.rectTransform.sizeDelta = new Vector2(3, 1);
 
-        // Adicionar componente para seguir a arma/bebida sem herdar scale
         TextFollower textFollower = textObj.AddComponent<TextFollower>();
         textFollower.target = drink.transform;
         textFollower.verticalOffset = 0.4f;
 
-        // Billboard para olhar para jogador
         BillboardText billboard = textObj.AddComponent<BillboardText>();
         billboard.target = playerHead;
 
-        // Guardar referência para poder destruir depois
         if (drink.GetComponent<TextReference>() == null)
         {
             TextReference textRef = drink.AddComponent<TextReference>();
@@ -637,7 +552,6 @@ public class AugmentManager : MonoBehaviour
     }
 }
 
-// Mantém o texto sempre virado para o jogador
 public class BillboardText : MonoBehaviour
 {
     public Transform target;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UncommonWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Brass Knuckles
-  description: +25 Increase armor
+  description: +100 Armor
   icon: {fileID: 0}
   augmentType: 0
   rarity: 1

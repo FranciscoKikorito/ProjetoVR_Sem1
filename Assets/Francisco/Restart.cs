@@ -19,9 +19,12 @@ public class Restart : MonoBehaviour
     public float drinkDistance = 0.4f;
 
     [Header("Wave")]
-    [SerializeField] public Transform deathStatsPoint;
+    public Transform deathStatsPoint;
     public Spawner spawner;
     public Spawner spawner2;
+
+    [Header("Scene Settings")]
+    public string sceneToLoad;
 
     private GameObject currentDrink;
     private Transform billboardText;
@@ -33,9 +36,7 @@ public class Restart : MonoBehaviour
             playerHead = Camera.main?.transform;
 
         if (spawner == null)
-        {
             spawner = spawner2;
-        }
 
         SpawnRestartDrink();
     }
@@ -91,10 +92,7 @@ public class Restart : MonoBehaviour
         int survivedWaves = 0;
 
         if (spawner != null)
-        {
-            // WaveNum starts at 1 → subtract 1 for survived
             survivedWaves = Mathf.Max(0, spawner.GetCurrentWave() - 1);
-        }
 
         textMesh.text = "Restart\n\nSurvived waves : " + survivedWaves;
     }
@@ -117,9 +115,7 @@ public class Restart : MonoBehaviour
         float distance = Vector3.Distance(currentDrink.transform.position, playerHead.position);
 
         if (distance < drinkDistance)
-        {
             DrinkSelected();
-        }
     }
 
     private void DrinkSelected()
@@ -127,7 +123,10 @@ public class Restart : MonoBehaviour
         if (currentDrink != null)
             Destroy(currentDrink);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (!string.IsNullOrEmpty(sceneToLoad))
+            SceneManager.LoadScene(sceneToLoad);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 
