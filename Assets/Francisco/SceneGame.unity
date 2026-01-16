@@ -9043,7 +9043,7 @@ MonoBehaviour:
   currentStats: {fileID: 0}
   currentHP: 0
   activeAugments: []
-  invincibilityDuration: 3
+  invincibilityDuration: 2
   restartObject: {fileID: 733503907}
   stop1: {fileID: 588470129}
   stop2: {fileID: 1178931524}
