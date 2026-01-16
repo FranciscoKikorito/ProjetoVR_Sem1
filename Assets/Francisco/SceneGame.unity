@@ -1514,7 +1514,7 @@ Transform:
   m_GameObject: {fileID: 87725013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.338, y: 0.7564278, z: 20.059942}
+  m_LocalPosition: {x: -3.188, y: 0.7564278, z: 20.059942}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7834,9 +7834,9 @@ MonoBehaviour:
   - {fileID: 1126014907}
   - {fileID: 891494941}
   enemyList: {fileID: 1383308602}
-  spawnFrequency: 5
+  spawnFrequency: 4
   timeBetweenWaves: 0
-  enemyHealthIncrease: 25
+  enemyHealthIncrease: 50
   enemyIncreaseNumber: 1
   initialEnemyHealth: 100
   initialEnemyNumber: 1
@@ -8286,13 +8286,13 @@ MonoBehaviour:
     uncommonAugments:
     - {fileID: 11400000, guid: f2a307f587484bb49b7cd22846fc6d4a, type: 2}
     rareAugments:
-    - {fileID: 11400000, guid: 5e4f689d92175124694f4a545002c1d2, type: 2}
+    - {fileID: 11400000, guid: 3fd4478bb01ba894c9a79ae347e6ae44, type: 2}
     epicAugments:
     - {fileID: 11400000, guid: ba388beb82b46094c83128b537644306, type: 2}
     legendaryAugments:
     - {fileID: 11400000, guid: a7c0177d860bfb7458e6492c962257cc, type: 2}
   choicesPerWave: 3
-  weaponChance: 0.15
+  weaponChance: 1
   audioSource: {fileID: 615361368}
   drinkSound: {fileID: 8300000, guid: c9ac0d666764b5d4e913b951370e3eea, type: 3}
   drinkSound2: {fileID: 8300000, guid: facd7474ca330e64e843d4f93cb67c9d, type: 3}
@@ -16995,9 +16995,9 @@ MonoBehaviour:
   - {fileID: 1126014907}
   - {fileID: 891494941}
   enemyList: {fileID: 1383308602}
-  spawnFrequency: 5
+  spawnFrequency: 4
   timeBetweenWaves: 0
-  enemyHealthIncrease: 25
+  enemyHealthIncrease: 50
   enemyIncreaseNumber: 1
   initialEnemyHealth: 100
   initialEnemyNumber: 1
@@ -25960,8 +25960,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stat upgrades and weapons will spawn between rounds, you can grab these
-    upgrades and take them towards your mouth to drink!
+  m_text: Upgrades will spawn between rounds, the color displays their rarity, you
+    can grab upgrades and drink them with your mouth!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

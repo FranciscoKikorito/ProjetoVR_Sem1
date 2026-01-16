@@ -156,33 +156,47 @@ public class AugmentManager : MonoBehaviour
 
     private Augment GetRandomAugmentFromPool(AugmentPool pool)
     {
-        float rarityRoll = Random.value;
-        List<Augment> selectedPool;
-
-        if (rarityRoll < 0.03f)
-            selectedPool = pool.legendaryAugments;
-        else if (rarityRoll < 0.10f)
-            selectedPool = pool.epicAugments;
-        else if (rarityRoll < 0.20f)
-            selectedPool = pool.rareAugments;
-        else if (rarityRoll < 0.60f)
-            selectedPool = pool.uncommonAugments;
-        else
-            selectedPool = pool.commonAugments;
-
-        if (selectedPool == null || selectedPool.Count == 0)
+        for (int attempt = 0; attempt < 20; attempt++)
         {
-            selectedPool = pool.commonAugments;
+            float rarityRoll = Random.value;
+            List<Augment> selectedPool;
+
+            if (rarityRoll < 0.02f)
+                selectedPool = pool.legendaryAugments;
+            else if (rarityRoll < 0.07f)
+                selectedPool = pool.epicAugments;
+            else if (rarityRoll < 0.23f)
+                selectedPool = pool.rareAugments;
+            else if (rarityRoll < 0.50f)
+                selectedPool = pool.uncommonAugments;
+            else
+                selectedPool = pool.commonAugments;
+
+            if (selectedPool != null && selectedPool.Count > 0)
+            {
+                return selectedPool[Random.Range(0, selectedPool.Count)];
+            }
         }
 
-        if (selectedPool.Count == 0)
+        List<Augment>[] allPools =
         {
-            Debug.LogError("Pool de augment vazia!");
-            return null;
+            pool.commonAugments,
+            pool.uncommonAugments,
+            pool.rareAugments,
+            pool.epicAugments,
+            pool.legendaryAugments
+        };
+
+        foreach (var p in allPools)
+        {
+            if (p != null && p.Count > 0)
+                return p[Random.Range(0, p.Count)];
         }
 
-        return selectedPool[Random.Range(0, selectedPool.Count)];
+        Debug.LogError("No augments exist in this pool!");
+        return null;
     }
+
 
 
     private void SpawnDrinks()
@@ -230,6 +244,7 @@ public class AugmentManager : MonoBehaviour
         {
             spawnedObject = Instantiate(augment.weaponPrefab, spawnPoint.position, spawnPoint.rotation);
 
+            spawnedObject.AddComponent<SimpleWeapon>();
             WeaponPickup weaponPickup = spawnedObject.AddComponent<WeaponPickup>();
             weaponPickup.augment = augment;
             weaponPickup.augmentManager = this;
@@ -379,7 +394,7 @@ public class AugmentManager : MonoBehaviour
         else if (weaponName.Contains("brass") || weaponName.Contains("knuckles"))
         {
             BrassKnucklesWeapon knucklesScript = weapon.AddComponent<BrassKnucklesWeapon>();
-            knucklesScript.armorBonus = 100;
+            knucklesScript.armorBonus = 75;
             if (Player.instance != null)
             {
                 Player.instance.currentStats.armor += knucklesScript.armorBonus;

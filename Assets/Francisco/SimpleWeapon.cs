@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class SimpleDrink : MonoBehaviour
+public class SimpleWeapon : MonoBehaviour
 {
-    public Augment augment;
-
     void Update()
     {
+
         transform.Rotate(0, 30 * Time.deltaTime, 0);
         transform.position += Vector3.up * Mathf.Sin(Time.time) * 0.001f;
     }

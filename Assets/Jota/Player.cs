@@ -138,13 +138,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         float damage = currentStats.attackDamage;
 
-        BaseballBatWeapon bat = GetComponentInChildren<BaseballBatWeapon>();
-        if (bat != null)
-        {
-            damage *= bat.damageMultiplier;
-        }
-
-        damage *= currentStats.alcoholAmplification;
+        damage = damage + (damage * currentStats.alcoholAmplification);
         bool isCrit = Random.value <= currentStats.critChance;
         if (isCrit) damage *= currentStats.critDamage;
 

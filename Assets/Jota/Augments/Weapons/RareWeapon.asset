@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e756381f9fee9e4fb1f13745afbfe6b, type: 3}
-  m_Name: UncommonWeapon
+  m_Name: RareWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
-  augmentName: Brass Knuckles
-  description: +75 Armor
+  augmentName: Baseball Bat
+  description: '1.5x Current Damage '
   icon: {fileID: 0}
   augmentType: 0
-  rarity: 1
-  weaponPrefab: {fileID: 9090392399072474349, guid: 3732fc51eda3bae4e9ad83c74758dfba, type: 3}
+  rarity: 2
+  weaponPrefab: {fileID: 2572448316486292573, guid: a0f3b37d429093040b08249e38c98196, type: 3}
   weaponSlot: RightHand
   statType: 1
   statValue: 0

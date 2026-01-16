@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: RareArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Ancient pirate Rum
-  description: +60 armor
+  description: +30 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 3
-  statValue: 60
+  statValue: 30
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1
