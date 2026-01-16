@@ -47,7 +47,6 @@ public class EnemyFollow : MonoBehaviour
         }
         else
         {
-            // Stop horizontal movement but keep gravity
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }

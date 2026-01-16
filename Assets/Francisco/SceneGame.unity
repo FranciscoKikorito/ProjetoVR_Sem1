@@ -8292,7 +8292,7 @@ MonoBehaviour:
     legendaryAugments:
     - {fileID: 11400000, guid: a7c0177d860bfb7458e6492c962257cc, type: 2}
   choicesPerWave: 3
-  weaponChance: 1
+  weaponChance: 0.2
   audioSource: {fileID: 615361368}
   drinkSound: {fileID: 8300000, guid: c9ac0d666764b5d4e913b951370e3eea, type: 3}
   drinkSound2: {fileID: 8300000, guid: facd7474ca330e64e843d4f93cb67c9d, type: 3}
@@ -17626,7 +17626,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9e0569751ed95bf448961da12b354c86, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.101
+  m_Volume: 0.07
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -27051,7 +27051,7 @@ Transform:
   m_GameObject: {fileID: 1757285451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.338, y: 0.7564278, z: 20.059942}
+  m_LocalPosition: {x: -3.338, y: 0.8564278, z: 20.059942}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []

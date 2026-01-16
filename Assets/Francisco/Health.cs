@@ -18,7 +18,6 @@ public class Health : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
     }
 
-    // Called by spawner when spawning
     public void InitializeEnemy(float healthValue, Spawner spawnerRef)
     {
         maxHealth = healthValue;
@@ -28,7 +27,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        if (currentHealth <= 0) return; // Already dead
+        if (currentHealth <= 0) return;
 
         currentHealth -= damage;
 
@@ -42,7 +41,7 @@ public class Health : MonoBehaviour, IDamageable
         if (spawner != null)
             spawner.NotifyDeath(this.gameObject);
 
-        // Destroy immediately
+        // Destroy
         Destroy(gameObject);
     }
 
