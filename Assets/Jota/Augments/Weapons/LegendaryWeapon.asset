@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LegendaryWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Super banana
-  description: '+500 attack damage
+  description: '+200 attack damage
 
     Increases your crit damage by an even higher
     amount!'
@@ -23,7 +23,7 @@ MonoBehaviour:
   weaponPrefab: {fileID: 6968074611577217512, guid: abee09a35b240434a8b7a10f0d7518f8, type: 3}
   weaponSlot: RightHand
   statType: 1
-  statValue: 500
+  statValue: 200
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 0

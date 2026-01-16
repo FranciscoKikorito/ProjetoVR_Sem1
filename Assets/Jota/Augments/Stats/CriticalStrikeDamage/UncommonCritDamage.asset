@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: UncommonCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Absinthe
-  description: +30% crit damage
+  description: +20% crit damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 5
-  statValue: 0.3
+  statValue: 0.2
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

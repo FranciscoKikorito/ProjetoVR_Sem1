@@ -8,6 +8,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPrefabs;
     [SerializeField] private List<Transform> spawnPoints;
 
+    [Header("Enemy List")]
+    [SerializeField] private GameObject enemyList; // Parent object for spawned enemies
+
     [Header("Wave Settings")]
     [SerializeField] private float spawnFrequency;
     [SerializeField] private float timeBetweenWaves;
@@ -23,22 +26,27 @@ public class Spawner : MonoBehaviour
     private Wave wave;
 
     private float spawnTimer;
-    private int currentEnemies;            // Enemies currently alive
-    private int enemiesSpawnedThisWave;    // Number of enemies spawned in this wave
+    private int currentEnemies;
+    private int enemiesSpawnedThisWave;
     private bool isWaitingForNextWave = false;
 
-    // NEW: prevent same spawn point twice in a row
+    // Prevent same spawn point twice in a row
     private int lastSpawnPointIndex = -1;
 
     void Start()
     {
         wave = new Wave(1, initialEnemyHealth, initialEnemyNumber);
 
-        // Spawn first enemy immediately
         spawnTimer = 0f;
         currentEnemies = 0;
         enemiesSpawnedThisWave = 0;
         isWaitingForNextWave = false;
+
+        // Safety check
+        if (enemyList == null)
+        {
+            Debug.LogWarning("Enemy List is not assigned in Spawner. Enemies will spawn without parent.");
+        }
     }
 
     void Update()
@@ -79,7 +87,14 @@ public class Spawner : MonoBehaviour
         lastSpawnPointIndex = spawnIndex;
         Transform spawnPoint = spawnPoints[spawnIndex];
 
+        // Instantiate enemy
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        // ✅ Set parent to enemyList if assigned
+        if (enemyList != null)
+        {
+            enemy.transform.SetParent(enemyList.transform);
+        }
 
         Health health = enemy.GetComponentInChildren<Health>();
         if (health != null)
@@ -97,15 +112,24 @@ public class Spawner : MonoBehaviour
         Debug.Log($"Spawned enemy {enemiesSpawnedThisWave}/{wave.maxEnemyNum} at {spawnPoint.position}");
     }
 
-    public void NotifyDeath()
+    private HashSet<GameObject> deadEnemies = new HashSet<GameObject>();
+
+    public void NotifyDeath(GameObject enemy)
     {
+        // Only count this enemy once
+        if (deadEnemies.Contains(enemy))
+            return;
+
+        deadEnemies.Add(enemy); // mark as counted
         currentEnemies--;
 
-        if (enemiesSpawnedThisWave > 0 && currentEnemies <= 0 && enemiesSpawnedThisWave >= wave.maxEnemyNum)
+        if (!isWaitingForNextWave && enemiesSpawnedThisWave >= wave.maxEnemyNum && currentEnemies <= 0)
         {
+            isWaitingForNextWave = true; // prevent multiple triggers
             StartCoroutine(AdvanceWaveAfterDelay());
         }
     }
+
 
     private IEnumerator AdvanceWaveAfterDelay()
     {
@@ -138,7 +162,7 @@ public class Spawner : MonoBehaviour
         // Always increase health
         wave.enemyHealth += enemyHealthIncrease;
 
-        // Reduce spawn timer at waves 5 and 10...
+        // Difficulty scaling
         if (wave.waveNum == 5 || wave.waveNum == 10 || wave.waveNum == 15 || wave.waveNum == 20)
         {
             spawnFrequency = Mathf.Max(0f, spawnFrequency - 1f);
@@ -153,4 +177,10 @@ public class Spawner : MonoBehaviour
 
         Debug.Log($"Wave {wave.waveNum} started! Enemy count: {wave.maxEnemyNum}, Health: {wave.enemyHealth}");
     }
+
+    public int GetCurrentWave()
+    {
+        return wave.waveNum;
+    }
+
 }

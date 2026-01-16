@@ -15,7 +15,7 @@ MonoBehaviour:
   augmentName: Baseball Bat
   description: '+15 attack damage
 
-    increases attack damage by a %'
+    increases attack damage'
   icon: {fileID: 0}
   augmentType: 0
   rarity: 0

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CommonCritChance
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Hydromel
-  description: '+10% Critical Chance '
+  description: '+5% Critical Chance '
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 4
-  statValue: 0.1
+  statValue: 0.05
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

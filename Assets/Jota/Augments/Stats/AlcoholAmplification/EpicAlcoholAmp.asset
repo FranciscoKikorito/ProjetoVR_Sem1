@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: EpicAlcoholAmp
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Newcastle brown ale
-  description: + 75% alcohol amplification
+  description: + 40% alcohol amplification
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 2
-  statValue: 0.75
+  statValue: 0.4
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

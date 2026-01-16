@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: RareAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Binks no Sake
-  description: +100 attack damage
+  description: +50 attack damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 1
-  statValue: 100
+  statValue: 50
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

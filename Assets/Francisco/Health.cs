@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Health : MonoBehaviour, IDamageable
 {
@@ -8,9 +9,8 @@ public class Health : MonoBehaviour, IDamageable
 
     private Animator animator;
     private Rigidbody rb;
-    private bool isDead = false;
 
-    [SerializeField] private float deathDelay = 3f;
+    [SerializeField] private float deathDelay = 0f;
 
     void Awake()
     {
@@ -28,7 +28,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        if (isDead) return;
+        if (currentHealth <= 0) return; // Already dead
 
         currentHealth -= damage;
 
@@ -36,43 +36,20 @@ public class Health : MonoBehaviour, IDamageable
             Die();
     }
 
-    /*
     private void Die()
     {
-        if (isDead) return;
-        isDead = true;
+        // Notify spawner
+        if (spawner != null)
+            spawner.NotifyDeath(this.gameObject);
 
-        
-        if (animator != null)
-            animator.SetBool("IsDead", true);
-
-        // 🔒 Freeze Rigidbody position & rotation
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
-
-        StartCoroutine(DeathRoutine());
+        // Destroy immediately
+        Destroy(gameObject);
     }
 
-    private System.Collections.IEnumerator DeathRoutine()
+
+    private IEnumerator DeathRoutine()
     {
-        &&yield return new WaitForSeconds(deathDelay);
-
-        if (spawner != null)
-            spawner.NotifyDeath();
-
-        Destroy(gameObject);
-    }*/
-
-
-    private void Die()
-    {
-        if (spawner != null)
-            spawner.NotifyDeath();
-
+        yield return new WaitForSeconds(deathDelay);
         Destroy(gameObject);
     }
 }

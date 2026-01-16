@@ -15,14 +15,14 @@ MonoBehaviour:
   augmentName: Almaza
   description: 'Big Heals!
 
-    +100 hp'
+    +75 hp'
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 0
-  statValue: 100
+  statValue: 75
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

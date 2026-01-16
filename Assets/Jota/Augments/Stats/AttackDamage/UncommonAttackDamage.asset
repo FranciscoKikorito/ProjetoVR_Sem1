@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: UncommonAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Genebra gin
-  description: +50 attack damage
+  description: +30 attack damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 1
-  statValue: 50
+  statValue: 30
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

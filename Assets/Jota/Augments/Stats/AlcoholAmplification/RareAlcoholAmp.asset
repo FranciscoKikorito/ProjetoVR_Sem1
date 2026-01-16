@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: RareAlcoholAmp
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Stella Artois
-  description: +35% alcohol amplification
+  description: +20% alcohol amplification
   icon: {fileID: 0}
   augmentType: 1
   rarity: 2
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 2
-  statValue: 0.35
+  statValue: 0.2
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: UncommonArmor
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Estrella Galicia
-  description: +30 armor
+  description: +40 armor
   icon: {fileID: 0}
   augmentType: 1
   rarity: 1
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 3
-  statValue: 30
+  statValue: 40
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

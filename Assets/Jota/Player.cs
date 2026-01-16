@@ -24,6 +24,12 @@ public class Player : MonoBehaviour, IDamageable
     private bool isInvincible = false;
     [SerializeField] private float invincibilityDuration = 3f;
 
+    [Header("Death Settings")]
+    public GameObject restartObject;
+    public GameObject stop1;
+    public GameObject stop2;
+    public GameObject stop3;
+    public GameObject destroyThis;
 
     [Header("Audio")]
     public AudioClip[] hitSounds;
@@ -77,13 +83,11 @@ public class Player : MonoBehaviour, IDamageable
         {
             case StatType.Health:
                 currentStats.health += augment.statValue;
-                //currentHP += augment.statValue; // Curar o valor adicional
                 break;
             case StatType.AttackDamage:
                 currentStats.attackDamage += (int)augment.statValue;
                 break;
             case StatType.AlcoholAmplification:
-                // Alcohol amplification � o multiplicador de dano
                 currentStats.alcoholAmplification += augment.statValue;
                 break;
             case StatType.Armor:
@@ -102,45 +106,34 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (augment.weaponPrefab != null)
         {
-            // Voc� pode adaptar isso para seu sistema de armas
-            if (weapons != null && weapons.Length > 0)
-            {
-                // Aqui voc� pode implementar l�gica para equipar a arma
-                // Por exemplo, substituir uma arma existente
-            }
-
-            // Instantiate a nova arma
             GameObject newWeapon = Instantiate(augment.weaponPrefab, transform.position, Quaternion.identity);
         }
     }
 
-    /*
-    private float CalculateDamageReduction(float armor)
-    {
-        return playerBaseStats.armor / (armor + 100f);
-    }*/
 
     private int CalculateDamageAfterArmor(int incomingDamage, float armor)
     {
-        //float damageReduction = CalculateDamageReduction(armor);
-        float damage = incomingDamage - armor;
-
-        return Mathf.RoundToInt(damage);
+        float reduction = Mathf.Clamp01(armor / (armor + 100f));
+        float damageAfterReduction = incomingDamage * (1f - reduction);
+        return Mathf.RoundToInt(damageAfterReduction);
     }
+
+
 
     public void TakeDamage(int damage)
     {
         if (isInvincible) return;
 
-        int finalDamage = CalculateDamageAfterArmor(damage, playerBaseStats.armor);
+        int finalDamage = CalculateDamageAfterArmor(damage, currentStats.armor); // use currentStats, not base
+        currentStats.health -= finalDamage;
 
 
         currentStats.health -= finalDamage;
-
         PlayHitSound();
 
-        if (currentHP <= 0)
+        if (currentStats.health <= 0)
         {
+            currentStats.health = 0;
             OnPlayerDeath();
         }
 
@@ -173,16 +166,29 @@ public class Player : MonoBehaviour, IDamageable
     public void OnPlayerDeath()
     {
         Debug.Log("Player died");
+
+        if (restartObject != null)
+            restartObject.SetActive(true);
+
+        if (stop1 != null)
+            stop1.SetActive(false);
+
+        if (stop2 != null)
+            stop2.SetActive(false);
+
+        if (stop3 != null)
+            stop3.SetActive(false);
+
+        Destroy(destroyThis);
+
+        this.enabled = false;
     }
 
     public int CalculatePlayerDamage(int baseDamage)
     {
         float damage = baseDamage;
 
-        // Aplicar alcohol amplification
         damage *= currentStats.alcoholAmplification;
-
-        // Verificar cr�tico
         bool isCrit = Random.value <= (currentStats.critChance * 100f);
 
         if (isCrit)

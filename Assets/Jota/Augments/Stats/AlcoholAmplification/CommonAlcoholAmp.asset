@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: CommonAlcoholAmp
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Sangria
-  description: +10% alcohol amplification
+  description: +5% alcohol amplification
   icon: {fileID: 0}
   augmentType: 1
   rarity: 0
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 2
-  statValue: 0.1
+  statValue: 0.05
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

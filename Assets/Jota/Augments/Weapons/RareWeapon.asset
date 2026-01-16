@@ -15,8 +15,7 @@ MonoBehaviour:
   augmentName: Tankard
   description: '+50 attack damage
 
-    Increases your alcohol amplification by a
-    %'
+    Increases your alcohol amplification '
   icon: {fileID: 0}
   augmentType: 0
   rarity: 2

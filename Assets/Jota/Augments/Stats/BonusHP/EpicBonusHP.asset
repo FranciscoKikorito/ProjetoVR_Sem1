@@ -15,14 +15,14 @@ MonoBehaviour:
   augmentName: Kvass
   description: 'Anu cheeki breeki i v damke!
 
-    +250 hp'
+    +100 hp'
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 0
-  statValue: 250
+  statValue: 100
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

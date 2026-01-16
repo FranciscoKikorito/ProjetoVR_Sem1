@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: LegendaryAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Your grandma's Liquor
-  description: +500 attack damage
+  description: +100 attack damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 4
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 1
-  statValue: 500
+  statValue: 100
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

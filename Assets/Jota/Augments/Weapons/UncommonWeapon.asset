@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: UncommonWeapon
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Brass Knuckles
-  description: '+35 attack damage
-
-    Increase armor by a %'
+  description: +25 Increase armor
   icon: {fileID: 0}
   augmentType: 0
   rarity: 1
   weaponPrefab: {fileID: 9090392399072474349, guid: 3732fc51eda3bae4e9ad83c74758dfba, type: 3}
   weaponSlot: RightHand
   statType: 1
-  statValue: 35
+  statValue: 25
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 0

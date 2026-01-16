@@ -56,7 +56,7 @@ public class Tutorial : MonoBehaviour
             var td = drinkNormal.AddComponent<TutorialDrink>();
             td.drinkType = TutorialDrink.DrinkType.Normal;
             currentDrinks.Add(drinkNormal);
-            CreateDrinkText(drinkNormal, "Normal");
+            CreateDrinkText(drinkNormal, "Start");
         }
 
         // Spawn 360 Mode drink

@@ -15,14 +15,14 @@ MonoBehaviour:
   augmentName: Drink on fire
   description: 'Literally flames that makes you want to not die
 
-    +500 HP'
+    +150 HP'
   icon: {fileID: 0}
   augmentType: 1
   rarity: 4
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 0
-  statValue: 500
+  statValue: 150
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: EpicAttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Rich man's Cognac
-  description: +250 attack damage
+  description: +75 attack damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 3
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 1
-  statValue: 250
+  statValue: 75
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

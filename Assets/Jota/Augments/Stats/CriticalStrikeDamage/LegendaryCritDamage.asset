@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: LegendaryCritDamage
   m_EditorClassIdentifier: Assembly-CSharp::Augment
   augmentName: Gasoline
-  description: +200% crit damage
+  description: +75% crit damage
   icon: {fileID: 0}
   augmentType: 1
   rarity: 4
   weaponPrefab: {fileID: 0}
   weaponSlot: RightHand
   statType: 5
-  statValue: 2
+  statValue: 0.75
   applyEffect: {fileID: 0}
   applySound: {fileID: 0}
   canStack: 1

@@ -50,6 +50,10 @@ public class AugmentManager : MonoBehaviour
     private List<GameObject> keptWeapons = new List<GameObject>(); // Armas que NÃO devem ser destruídas
     private bool isSelectionActive = false;
 
+    private int pickedWeapons = 0; // Tracks how many weapons the player picked
+    private int maxPlayerWeapons = 2; // Max weapons the player can have
+
+
     private void Start()
     {
         if (playerHead == null)
@@ -82,30 +86,28 @@ public class AugmentManager : MonoBehaviour
     {
         generatedChoices.Clear();
 
-        int weaponCount = 0;
-        int statCount = 0;
-
-        // Verificar se jogador já tem 2 armas
-        bool canSpawnWeapons = Player.instance != null && Player.instance.activeAugments.Count < 2;
-        float actualWeaponChance = canSpawnWeapons ? weaponChance : 0f;
+        int weaponCountThisWave = 0;
+        int maxWeaponsThisWave = 1; // Only 1 weapon per wave
 
         for (int i = 0; i < choicesPerWave; i++)
         {
             Augment newAugment;
 
-            bool chooseWeapon = Random.value < actualWeaponChance;
+            // Only allow a weapon if player picked less than maxPlayerWeapons
+            bool canSpawnWeapon = (pickedWeapons < maxPlayerWeapons) && (weaponCountThisWave < maxWeaponsThisWave);
+            bool chooseWeapon = canSpawnWeapon && Random.value < weaponChance;
 
-            if (chooseWeapon && weaponCount < choicesPerWave - 1)
+            if (chooseWeapon)
             {
                 newAugment = GetRandomAugmentFromPool(weaponAugments);
-                weaponCount++;
+                weaponCountThisWave++;
             }
             else
             {
                 newAugment = GetRandomAugmentFromPool(statAugments);
-                statCount++;
             }
 
+            // Skip duplicates if augment can't stack
             if (Player.instance != null && !newAugment.canStack)
             {
                 bool alreadyHas = false;
@@ -120,7 +122,7 @@ public class AugmentManager : MonoBehaviour
 
                 if (alreadyHas)
                 {
-                    i--;
+                    i--; // Retry this slot
                     continue;
                 }
             }
@@ -346,6 +348,8 @@ public class AugmentManager : MonoBehaviour
     {
         Debug.Log("Arma pega: " + augment.augmentName);
 
+        pickedWeapons++; // <- Track picked weapons
+
         if (audioSource != null && drinkSound != null)
         {
             audioSource.PlayOneShot(drinkSound);
@@ -361,25 +365,20 @@ public class AugmentManager : MonoBehaviour
             ApplyWeaponEffect(weapon, augment);
         }
 
-        // Remover da lista de drinks (para não ser destruída)
         currentDrinks.Remove(weapon);
-
-        // Adicionar à lista de armas mantidas
         keptWeapons.Add(weapon);
 
-        // Remover texto da arma
         TextReference textRef = weapon.GetComponent<TextReference>();
-        if (textRef != null && textRef.assignedText != null)
+        if (textRef != null)
         {
-            Destroy(textRef.assignedText);
+            if (textRef.assignedText != null)
+                Destroy(textRef.assignedText);
+            Destroy(textRef);
         }
 
-        // Remover componente TextReference também
-        Destroy(textRef);
-
-        // Fechar seleção
         FinishSelection();
     }
+
 
     private void ApplyWeaponEffect(GameObject weapon, Augment augment)
     {
