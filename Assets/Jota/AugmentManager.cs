@@ -74,6 +74,8 @@ public class AugmentManager : MonoBehaviour
 
     public void ShowAugmentSelection()
     {
+        Debug.Log("Mostrando seleção de augments");
+
         isSelectionActive = true;
 
         GenerateAugmentChoices();
@@ -86,7 +88,7 @@ public class AugmentManager : MonoBehaviour
         generatedChoices.Clear();
 
         int weaponCountThisWave = 0;
-        int maxWeaponsThisWave = 1;
+        int maxWeaponsThisWave = 1; // 1 weapon per wave
 
         for (int i = 0; i < choicesPerWave; i++)
         {
@@ -132,7 +134,9 @@ public class AugmentManager : MonoBehaviour
     {
         if (augmentDisplayText != null)
         {
-            string instruction = "<color=yellow>Chose your next drink or weapon</color>\n";
+            string instruction = "<color=yellow>Escolha sua bebida ou arma!</color>\n";
+            instruction += "Para bebidas: aproxime da sua cabeça\n";
+            instruction += "Para armas: pegue com a mão";
 
             augmentDisplayText.text = instruction;
             augmentDisplayText.gameObject.SetActive(true);
@@ -226,7 +230,6 @@ public class AugmentManager : MonoBehaviour
         {
             spawnedObject = Instantiate(augment.weaponPrefab, spawnPoint.position, spawnPoint.rotation);
 
-            SimpleWeapon wep = spawnedObject.AddComponent<SimpleWeapon>();
             WeaponPickup weaponPickup = spawnedObject.AddComponent<WeaponPickup>();
             weaponPickup.augment = augment;
             weaponPickup.augmentManager = this;
@@ -383,7 +386,7 @@ public class AugmentManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"Effect {augment.augmentName} applied!");
+        Debug.Log($"Efeito da arma {augment.augmentName} aplicado!");
     }
 
     private void DrinkSelected(GameObject drink)
@@ -508,8 +511,9 @@ public class AugmentManager : MonoBehaviour
         textMesh.color = GetColorByRarity(augment.rarity);
         textMesh.textWrappingMode = TextWrappingModes.Normal;
         textMesh.enableAutoSizing = false;
-        textMesh.rectTransform.localScale = Vector3.one;
+        textMesh.rectTransform.localScale = Vector3.one; // Garantir scale 1
 
+        // Tamanho fixo para o texto
         textMesh.rectTransform.sizeDelta = new Vector2(3, 1);
 
         TextFollower textFollower = textObj.AddComponent<TextFollower>();
@@ -528,7 +532,7 @@ public class AugmentManager : MonoBehaviour
 
     public void SelectAugment(Augment selectedAugment)
     {
-        Debug.Log($"Manually selected augment: {selectedAugment.augmentName}");
+        Debug.Log($"Augment selecionado manualmente: {selectedAugment.augmentName}");
 
         if (Player.instance != null)
         {

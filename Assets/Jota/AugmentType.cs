@@ -10,8 +10,8 @@ public enum StatType
 {
     Health,
     AttackDamage,
-    AlcoholAmplification,
-    Armor,
+    AlcoholAmplification, // Alcohol Amplification
+    Armor, // Armor
     CriticalChance,
     CriticalDamage
 }

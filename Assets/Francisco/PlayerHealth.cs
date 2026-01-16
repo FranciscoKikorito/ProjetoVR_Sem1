@@ -37,5 +37,6 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player died");
+        // Add death logic here (respawn, game over, etc.)
     }
 }

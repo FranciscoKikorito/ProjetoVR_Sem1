@@ -19,6 +19,7 @@ public class WeaponPickup : MonoBehaviour
     {
         yield return new WaitForSeconds(pickupDelay);
         canBePickedUp = true;
+        Debug.Log("Arma agora pode ser pega: " + augment.augmentName);
     }
 
     void OnCollisionEnter(Collision collision)

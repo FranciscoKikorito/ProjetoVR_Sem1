@@ -16,7 +16,7 @@ public class HandPunch : MonoBehaviour
     [Range(0, 1)] public float volume = 1.0f;
 
     [Header("VFX")]
-    public GameObject[] hitVFXPrefabs;
+    public GameObject[] hitVFXPrefabs; // This is now an array (list)
     public float destroyVFXAfter = 2.0f;
     private void Start()
     {
@@ -25,6 +25,7 @@ public class HandPunch : MonoBehaviour
 
     private void Update()
     {
+        // Calculate hand velocity manually
         currentVelocity = (transform.position - previousPosition).magnitude / Time.deltaTime;
         previousPosition = transform.position;
     }
@@ -39,6 +40,7 @@ public class HandPunch : MonoBehaviour
             dmg *= Player.instance.currentStats.critDamage;
         }
 
+        // Optionally scale damage by velocity
         dmg *= Mathf.Clamp(currentVelocity / punchVelocityThreshold, 0.5f, 2f);
 
         return Mathf.RoundToInt(dmg);
@@ -46,6 +48,7 @@ public class HandPunch : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Only apply damage if hand is moving fast enough
         if (currentVelocity < punchVelocityThreshold)
             return;
 
@@ -75,8 +78,10 @@ public class HandPunch : MonoBehaviour
 
     void SpawnHitVFX(Collision collision)
     {
+        // Check if the array is empty or null
         if (hitVFXPrefabs != null && hitVFXPrefabs.Length > 0)
         {
+            // Pick a random index from 0 to the end of your list
             int randomIndex = Random.Range(0, hitVFXPrefabs.Length);
             GameObject selectedVFX = hitVFXPrefabs[randomIndex];
 

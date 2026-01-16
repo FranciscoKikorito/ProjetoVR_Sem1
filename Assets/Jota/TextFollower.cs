@@ -12,13 +12,16 @@ public class TextFollower : MonoBehaviour
     {
         if (target != null && target.gameObject.activeSelf)
         {
+            // Calcular posição alvo (acima do objeto)
             targetPosition = target.position + Vector3.up * verticalOffset;
 
+            // Suavizar movimento
             transform.position = Vector3.Lerp(transform.position, targetPosition,
                 followSpeed * Time.deltaTime);
         }
         else
         {
+            // Destruir texto se o alvo foi destruído
             Destroy(gameObject);
         }
     }
